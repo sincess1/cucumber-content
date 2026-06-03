@@ -116,7 +116,7 @@ def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path, encoding="utf-8"))
     accent = ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
     items = cfg["items"]
-    footer = cfg.get("footer", "Первая игра бесплатно  ·  steamgate.online")
+    footer = cfg.get("footer", "Сыграй в любую новинку бесплатно")
     pad, gap, row_gap = 44, 28, 26
     n = len(items)
     cols = 1 if n == 1 else 2
@@ -183,10 +183,17 @@ def main(cfg_path, out_path):
             if it.get("old") or it.get("new"):
                 draw_price(d, x, y+ch+12+40, cw, it.get("old"), it.get("new", ""))
 
-    # ── футер (по центру) ──
+    # ── футер (по центру): CTA серым + сайт синим, авто-подгон ──
     if footer:
-        fw = tw(d, footer, font(24))[0]
-        d.text(((W-fw)//2, H-footer_h+22), footer, font=font(24), fill=GRAY + (255,))
+        site = "steamgate.online"; sep = "  ·  "
+        for fsz in (24, 22, 20, 18):
+            ff = font(fsz)
+            cwf = tw(d, footer + sep, ff)[0]; swf = tw(d, site, ff)[0]
+            if cwf + swf <= W - pad*2 or fsz == 18:
+                break
+        fx = (W - (cwf + swf)) // 2; fy = H - footer_h + 22
+        d.text((fx, fy), footer + sep, font=ff, fill=GRAY + (255,))
+        d.text((fx + cwf, fy), site, font=ff, fill=PRIMARY + (255,))
 
     canvas.convert("RGB").save(out_path, "JPEG", quality=90, optimize=True)
     print("saved", canvas.size, round(os.path.getsize(out_path)/1024), "KB")
