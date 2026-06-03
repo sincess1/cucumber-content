@@ -102,25 +102,35 @@ def draw_price(d, x, y, cw, old, new):
         d.text((cx, y), "  →  ", font=fo, fill=GRAY + (255,)); cx += aw
     d.text((cx, y), new, font=fb, fill=GREEN + (255,))
 
+def fit_cover(im, cw, ch):
+    tr, sr = ch / cw, im.height / im.width
+    if sr > tr:
+        nh = int(im.width * tr); t = (im.height - nh) // 2
+        im = im.crop((0, t, im.width, t + nh))
+    else:
+        nw = int(im.height / tr); l = (im.width - nw) // 2
+        im = im.crop((l, 0, l + nw, im.height))
+    return im.resize((cw, ch), Image.LANCZOS)
+
 def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path, encoding="utf-8"))
     accent = ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
     items = cfg["items"]
     footer = cfg.get("footer", "Первая игра бесплатно  ·  steamgate.online")
-    pad, gap = 44, 28
+    pad, gap, row_gap = 44, 28, 26
     n = len(items)
-    cw = (W - pad*2 - gap*(n-1)) // n
-    covers = []
-    for it in items:
-        im = load_img(it["img"]); ch = int(im.height * cw / im.width)
-        covers.append(im.resize((cw, ch), Image.LANCZOS))
-    ch = covers[0].height
+    cols = 1 if n == 1 else 2
+    rows = (n + cols - 1) // cols
+    cw = (W - pad*2 - gap*(cols-1)) // cols
+    ch = int(cw * 215 / 460)   # единый размер карты (формат steam header)
+    covers = [fit_cover(load_img(it["img"]), cw, ch) for it in items]
 
     top = 196              # старт карточек
     has_price = any(it.get("old") or it.get("new") for it in items)
     undercard = 50 + (46 if has_price else 0)   # имя (+ цена)
     footer_h = 70
-    H = top + ch + undercard + footer_h
+    cell_h = ch + undercard
+    H = top + rows*cell_h + (rows-1)*row_gap + footer_h
 
     canvas = vgrad(W, H).convert("RGBA")
     glow(canvas, 150, 70, 360, PRIMARY, 42)
@@ -148,25 +158,30 @@ def main(cfg_path, out_path):
         sf = font(22, False)
         d.text(((W - tw(d, cfg["subtitle"], sf)[0]) // 2, 152), cfg["subtitle"], font=sf, fill=GRAY + (255,))
 
-    # ── карточки ──
-    x = pad
-    for im, it in zip(covers, items):
-        bd = Image.new("RGBA", (im.width+6, im.height+6), (0, 0, 0, 0))
-        ImageDraw.Draw(bd).rounded_rectangle([0, 0, im.width+5, im.height+5], 20, outline=accent + (200,), width=3)
-        canvas.alpha_composite(bd, (x-3, top-3))
-        canvas.alpha_composite(rounded(im, 18), (x, top))
-        d = ImageDraw.Draw(canvas)
-        tag = it.get("tag")
-        if tag:
-            tcol = GREEN if str(tag).startswith("-") else GOLD
-            tagw = tw(d, tag, font(22))[0]
-            d.rounded_rectangle([x+12, top+12, x+12+tagw+24, top+12+34], 17, fill=tcol + (235,))
-            d.text((x+24, top+16), tag, font=font(22), fill=(12, 17, 26) + (255,))
-        nf = font(28)
-        d.text((x + (cw - tw(d, it["name"], nf)[0]) // 2, top+ch+12), it["name"], font=nf, fill=WHITE + (255,))
-        if it.get("old") or it.get("new"):
-            draw_price(d, x, top+ch+12+40, cw, it.get("old"), it.get("new", ""))
-        x += cw + gap
+    # ── карточки (сетка, ряды по центру) ──
+    for r in range(rows):
+        row_items = items[r*cols:(r+1)*cols]
+        row_covers = covers[r*cols:(r+1)*cols]
+        k = len(row_items)
+        x0 = (W - (k*cw + (k-1)*gap)) // 2
+        y = top + r*(cell_h + row_gap)
+        for c, (im, it) in enumerate(zip(row_covers, row_items)):
+            x = x0 + c*(cw+gap)
+            bd = Image.new("RGBA", (cw+6, ch+6), (0, 0, 0, 0))
+            ImageDraw.Draw(bd).rounded_rectangle([0, 0, cw+5, ch+5], 20, outline=accent + (200,), width=3)
+            canvas.alpha_composite(bd, (x-3, y-3))
+            canvas.alpha_composite(rounded(im, 18), (x, y))
+            d = ImageDraw.Draw(canvas)
+            tag = it.get("tag")
+            if tag:
+                tcol = GREEN if str(tag).startswith("-") else GOLD
+                tagw = tw(d, tag, font(22))[0]
+                d.rounded_rectangle([x+12, y+12, x+12+tagw+24, y+12+34], 17, fill=tcol + (235,))
+                d.text((x+24, y+16), tag, font=font(22), fill=(12, 17, 26) + (255,))
+            nf = font(28)
+            d.text((x + (cw - tw(d, it["name"], nf)[0]) // 2, y+ch+12), it["name"], font=nf, fill=WHITE + (255,))
+            if it.get("old") or it.get("new"):
+                draw_price(d, x, y+ch+12+40, cw, it.get("old"), it.get("new", ""))
 
     # ── футер (по центру) ──
     if footer:
