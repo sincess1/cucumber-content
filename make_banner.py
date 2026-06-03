@@ -85,15 +85,16 @@ def text_with_glow(canvas, parts, y, gcolor, g=14):
     for t, col, f in parts:
         d.text((x, y), t, font=f, fill=col + (255,)); x += tw(d, t, f)[0]
 
-def draw_price(d, x, y, cw, old, new, accent):
-    for sz in (24, 22, 20, 18, 16):
+def draw_price(d, x, y, cw, old, new):
+    for sz in (28, 26, 24, 22, 20, 18):
         fo, fb = font(sz, False), font(sz, True)
         ow = tw(d, old, fo)[0] if old else 0
         aw = tw(d, "  →  ", fo)[0] if old else 0
         nw = tw(d, new, fb)[0]
-        if ow + aw + nw <= cw or sz == 16:
+        total = ow + aw + nw
+        if total <= cw or sz == 18:
             break
-    cx = x
+    cx = x + (cw - total)//2
     if old:
         d.text((cx, y), old, font=fo, fill=GRAY + (255,))
         d.line([(cx, y + sz*0.52), (cx + ow, y + sz*0.52)], fill=GRAY + (255,), width=2)
@@ -117,7 +118,7 @@ def main(cfg_path, out_path):
 
     top = 196              # старт карточек
     has_price = any(it.get("old") or it.get("new") for it in items)
-    undercard = 40 + (34 if has_price else 0)   # имя (+ цена)
+    undercard = 50 + (46 if has_price else 0)   # имя (+ цена)
     footer_h = 70
     H = top + ch + undercard + footer_h
 
@@ -131,14 +132,21 @@ def main(cfg_path, out_path):
     text_with_glow(canvas, [("CUCUMBER ", WHITE, bf), ("GAME", GREEN, bf)], 26, PRIMARY, g=16)
     d = ImageDraw.Draw(canvas)
 
-    # ── заголовок + платформа (слева) ──
+    # ── заголовок (по центру, крупно, со свечением) + платформа (по центру) ──
+    title = cfg["title"]
+    for tsz in (60, 56, 50, 46):
+        tf = font(tsz)
+        if tw(d, title, tf)[0] <= W - pad*2:
+            break
+    tx = (W - tw(d, title, tf)[0]) // 2
     layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    ImageDraw.Draw(layer).text((pad, 86), cfg["title"], font=font(50), fill=accent + (255,))
-    canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(11)))
+    ImageDraw.Draw(layer).text((tx, 80), title, font=tf, fill=accent + (255,))
+    canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(16)))
     d = ImageDraw.Draw(canvas)
-    d.text((pad, 86), cfg["title"], font=font(50), fill=accent + (255,))
+    d.text((tx, 80), title, font=tf, fill=accent + (255,))
     if cfg.get("subtitle"):
-        d.text((pad, 150), cfg["subtitle"], font=font(22, False), fill=GRAY + (255,))
+        sf = font(22, False)
+        d.text(((W - tw(d, cfg["subtitle"], sf)[0]) // 2, 152), cfg["subtitle"], font=sf, fill=GRAY + (255,))
 
     # ── карточки ──
     x = pad
@@ -154,9 +162,10 @@ def main(cfg_path, out_path):
             tagw = tw(d, tag, font(22))[0]
             d.rounded_rectangle([x+12, top+12, x+12+tagw+24, top+12+34], 17, fill=tcol + (235,))
             d.text((x+24, top+16), tag, font=font(22), fill=(12, 17, 26) + (255,))
-        d.text((x+2, top+ch+10), it["name"], font=font(26), fill=WHITE + (255,))
+        nf = font(28)
+        d.text((x + (cw - tw(d, it["name"], nf)[0]) // 2, top+ch+12), it["name"], font=nf, fill=WHITE + (255,))
         if it.get("old") or it.get("new"):
-            draw_price(d, x+2, top+ch+10+34, cw, it.get("old"), it.get("new", ""), accent)
+            draw_price(d, x, top+ch+12+40, cw, it.get("old"), it.get("new", ""))
         x += cw + gap
 
     # ── футер (по центру) ──
