@@ -1,0 +1,14 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · -85%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-3a11-70d1-81cd-cac58ba1e391/banner400.jpg",
+      "name": "Shadow of the Tomb Raider",
+      "tag": "-85%",
+      "old": "$39.99",
+      "new": "$5.99 до 11 июня"
+    }
+  ]
+}
