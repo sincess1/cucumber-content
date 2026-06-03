@@ -1,0 +1,14 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · -96% · успей до конца",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/315210/header.jpg",
+      "name": "Suicide Squad: Kill the Justice League",
+      "tag": "-96%",
+      "old": "$69.99",
+      "new": "$3.04"
+    }
+  ]
+}
