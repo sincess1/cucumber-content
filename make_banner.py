@@ -73,17 +73,33 @@ def tw(d, text, f):
     b = d.textbbox((0, 0), text, font=f); return b[2]-b[0], b[3]-b[1]
 
 def text_with_glow(canvas, parts, y, gcolor, g=14):
-    """parts = [(text,color,font)]; центрируется по W, со свечением."""
+    """parts = [(text,color,font)]; центрируется по W; тень + свечение + чёткий текст."""
     d = ImageDraw.Draw(canvas)
     total = sum(tw(d, t, f)[0] for t, _, f in parts)
     x0 = (W - total)//2
     full = "".join(t for t, _, _ in parts)
+    f0 = parts[0][2]
+    sh = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    ImageDraw.Draw(sh).text((x0+1, y+3), full, font=f0, fill=(0, 0, 0, 150))
+    canvas.alpha_composite(sh.filter(ImageFilter.GaussianBlur(3)))
     layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    ImageDraw.Draw(layer).text((x0, y), full, font=parts[0][2], fill=gcolor + (255,))
+    ImageDraw.Draw(layer).text((x0, y), full, font=f0, fill=gcolor + (255,))
     canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(g)))
     x = x0
     for t, col, f in parts:
         d.text((x, y), t, font=f, fill=col + (255,)); x += tw(d, t, f)[0]
+
+def divider(canvas, y, pad):
+    w = canvas.size[0]; th = 3
+    line = Image.new("RGBA", (w, th), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(line)
+    for px in range(pad, w-pad):
+        t = (px-pad)/(w-2*pad)
+        a = max(0, int(215 * (1 - abs(t-0.5)*1.6)))
+        c = PRIMARY if t < 0.5 else GREEN
+        for yy in range(th):
+            ld.point((px, yy), fill=c + (a,))
+    canvas.alpha_composite(line.filter(ImageFilter.GaussianBlur(0.6)), (0, y))
 
 def draw_price(d, x, y, cw, old, new):
     for sz in (28, 26, 24, 22, 20, 18):
@@ -125,7 +141,7 @@ def main(cfg_path, out_path):
     ch = int(cw * 215 / 460)   # единый размер карты (формат steam header)
     covers = [fit_cover(load_img(it["img"]), cw, ch) for it in items]
 
-    top = 196              # старт карточек
+    top = 206              # старт карточек
     has_price = any(it.get("old") or it.get("new") for it in items)
     undercard = 50 + (46 if has_price else 0)   # имя (+ цена)
     footer_h = 70
@@ -149,6 +165,9 @@ def main(cfg_path, out_path):
         if tw(d, title, tf)[0] <= W - pad*2:
             break
     tx = (W - tw(d, title, tf)[0]) // 2
+    sh = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    ImageDraw.Draw(sh).text((tx+2, 84), title, font=tf, fill=(0, 0, 0, 175))
+    canvas.alpha_composite(sh.filter(ImageFilter.GaussianBlur(5)))
     layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     ImageDraw.Draw(layer).text((tx, 80), title, font=tf, fill=accent + (255,))
     canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(16)))
@@ -157,6 +176,8 @@ def main(cfg_path, out_path):
     if cfg.get("subtitle"):
         sf = font(22, False)
         d.text(((W - tw(d, cfg["subtitle"], sf)[0]) // 2, 152), cfg["subtitle"], font=sf, fill=GRAY + (255,))
+    divider(canvas, top - 22, pad)
+    d = ImageDraw.Draw(canvas)
 
     # ── карточки (сетка, ряды по центру) ──
     for r in range(rows):
@@ -179,12 +200,16 @@ def main(cfg_path, out_path):
                 d.rounded_rectangle([x+12, y+12, x+12+tagw+24, y+12+34], 17, fill=tcol + (235,))
                 d.text((x+24, y+16), tag, font=font(22), fill=(12, 17, 26) + (255,))
             nf = font(28)
-            d.text((x + (cw - tw(d, it["name"], nf)[0]) // 2, y+ch+12), it["name"], font=nf, fill=WHITE + (255,))
+            nx = x + (cw - tw(d, it["name"], nf)[0]) // 2
+            d.text((nx+1, y+ch+14), it["name"], font=nf, fill=(0, 0, 0, 150))
+            d.text((nx, y+ch+12), it["name"], font=nf, fill=WHITE + (255,))
             if it.get("old") or it.get("new"):
                 draw_price(d, x, y+ch+12+40, cw, it.get("old"), it.get("new", ""))
 
     # ── футер (по центру): CTA серым + сайт синим, авто-подгон ──
     if footer:
+        divider(canvas, H - footer_h + 4, pad)
+        d = ImageDraw.Draw(canvas)
         site = "steamgate.online"; sep = "  ·  "
         for fsz in (24, 22, 20, 18):
             ff = font(fsz)
