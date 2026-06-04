@@ -1,0 +1,35 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · скидки до 90%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-07c2-7077-bebc-928c09f137d8/banner400.jpg?t=1763676026",
+      "name": "Deus Ex: Mankind Divided",
+      "tag": "-90%",
+      "old": "$29.99",
+      "new": "$2.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-4614-7311-8f5e-54720a2e73c2/banner400.jpg?t=1775823612",
+      "name": "Control Ultimate Edition",
+      "tag": "-90%",
+      "old": "$39.99",
+      "new": "$3.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-1608-721b-8ee7-f4903258fb76/banner400.jpg?t=1778578808",
+      "name": "Green Hell",
+      "tag": "-90%",
+      "old": "$24.99",
+      "new": "$2.49"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-6144-7057-ad1c-0e99a3a71797/banner400.jpg?t=1778798102",
+      "name": "Hogwarts Legacy",
+      "tag": "-85%",
+      "old": "$59.99",
+      "new": "$8.99"
+    }
+  ]
+}
