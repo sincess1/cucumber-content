@@ -1,0 +1,14 @@
+{
+  "title": "ХАЛЯВА НЕДЕЛИ",
+  "subtitle": "Steam · бесплатно",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://cdn.cloudflare.steamstatic.com/steam/apps/577740/header.jpg",
+      "name": "Winexy",
+      "tag": "FREE",
+      "old": "$4.99",
+      "new": "бесплатно до 5 июня"
+    }
+  ]
+}
