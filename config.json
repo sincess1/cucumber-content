@@ -1,0 +1,14 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · скидки до 85%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937e-ff9a-7155-8cc8-0f2b7c01ded6/banner400.jpg?t=1775541017",
+      "name": "Nioh: Complete Edition",
+      "tag": "-85%",
+      "old": "$49.99",
+      "new": "$7.49"
+    }
+  ]
+}
