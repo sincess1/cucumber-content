@@ -143,7 +143,8 @@ def main(cfg_path, out_path):
 
     top = 206              # старт карточек
     has_price = any(it.get("old") or it.get("new") for it in items)
-    undercard = 50 + (46 if has_price else 0)   # имя (+ цена)
+    has_name = any(it.get("name") for it in items)
+    undercard = (50 if has_name else 10) + (46 if has_price else 0)   # имя (+ цена)
     footer_h = 70
     cell_h = ch + undercard
     H = top + rows*cell_h + (rows-1)*row_gap + footer_h
@@ -199,10 +200,11 @@ def main(cfg_path, out_path):
                 tagw = tw(d, tag, font(22))[0]
                 d.rounded_rectangle([x+12, y+12, x+12+tagw+24, y+12+34], 17, fill=tcol + (235,))
                 d.text((x+24, y+16), tag, font=font(22), fill=(12, 17, 26) + (255,))
-            nf = font(28)
-            nx = x + (cw - tw(d, it["name"], nf)[0]) // 2
-            d.text((nx+1, y+ch+14), it["name"], font=nf, fill=(0, 0, 0, 150))
-            d.text((nx, y+ch+12), it["name"], font=nf, fill=WHITE + (255,))
+            if it.get("name"):
+                nf = font(28)
+                nx = x + (cw - tw(d, it["name"], nf)[0]) // 2
+                d.text((nx+1, y+ch+14), it["name"], font=nf, fill=(0, 0, 0, 150))
+                d.text((nx, y+ch+12), it["name"], font=nf, fill=WHITE + (255,))
             if it.get("old") or it.get("new"):
                 draw_price(d, x, y+ch+12+40, cw, it.get("old"), it.get("new", ""))
 
