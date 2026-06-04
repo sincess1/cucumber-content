@@ -1,0 +1,21 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · скидки до 85%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-4293-7217-a8d5-41fbae8f2929/banner400.jpg",
+      "name": "Mafia: Definitive Edition",
+      "tag": "-85%",
+      "old": "$39.99",
+      "new": "$5.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-1e66-7184-b1d7-1634c8fc9df4/banner400.jpg",
+      "name": "Metro Exodus",
+      "tag": "-85%",
+      "old": "$29.99",
+      "new": "$4.49"
+    }
+  ]
+}
