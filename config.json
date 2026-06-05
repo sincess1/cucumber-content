@@ -1,0 +1,14 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · скидки до 90%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-1e92-7265-8ad2-d01cdd79164b/banner400.jpg?t=1766037317",
+      "name": "Code Vein",
+      "tag": "-90%",
+      "old": "$59.99",
+      "new": "$5.99"
+    }
+  ]
+}
