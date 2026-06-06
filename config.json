@@ -1,0 +1,21 @@
+{
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam-ключи · до -86%",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-556c-700b-adaa-249a833f300c/banner400.jpg",
+      "name": "Devil May Cry 5 + Vergil",
+      "tag": "-85%",
+      "old": "$29.99",
+      "new": "$4.35 на JoyBuggy"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-11e9-737d-b387-56c67ec8a1c6/banner400.jpg",
+      "name": "DMC HD Collection",
+      "tag": "-86%",
+      "old": "$29.99",
+      "new": "$4.34 на eTail.Market"
+    }
+  ]
+}
