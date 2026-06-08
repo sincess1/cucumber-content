@@ -1,0 +1,21 @@
+{
+  "title": "ХАЛЯВА НЕДЕЛИ",
+  "subtitle": "Успей забрать до 11 июня",
+  "accent": "blue",
+  "items": [
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-51d0-71f8-bae2-77219d8e662d/banner400.jpg?t=1780593637",
+      "name": "Songs of Conquest",
+      "tag": "FREE",
+      "old": "$29.99",
+      "new": "$0"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/019176a2-3906-719c-9689-305ef84f2e10/banner400.jpg?t=1761600342",
+      "name": "Rogue Waters",
+      "tag": "FREE",
+      "old": "$29.99",
+      "new": "$0"
+    }
+  ]
+}
