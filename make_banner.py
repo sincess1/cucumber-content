@@ -17,10 +17,21 @@ GREEN   = (57, 227, 164)    # изумруд
 GOLD    = (240, 195, 109)   # золото
 WHITE   = (236, 243, 250)
 GRAY    = (158, 172, 192)
+CORAL   = (255, 122, 96)    # распродажи/скидки
+PURPLE  = (186, 148, 255)   # мемы
 BG_TOP  = (10, 15, 22)
 BG_MID  = (11, 21, 34)
 BG_BOT  = (9, 13, 20)
-ACCENTS = {"blue": PRIMARY, "green": GREEN, "gold": GOLD}
+ACCENTS = {"blue": PRIMARY, "green": GREEN, "gold": GOLD, "coral": CORAL, "purple": PURPLE}
+# Рубрики: каждая со своим цветом (заголовок/рамки/свечение) и бейджем в углу —
+# рубрика узнаётся с одного взгляда, общий шаблон един.
+RUBRICS = {
+    "freebie": {"badge": "ХАЛЯВА",  "color": GOLD},
+    "catalog": {"badge": "ЗАВОЗ",   "color": GREEN},
+    "sale":    {"badge": "СКИДКИ",  "color": CORAL},
+    "news":    {"badge": "НОВОСТИ", "color": PRIMARY},
+    "meme":    {"badge": "МЕМ",     "color": PURPLE},
+}
 
 def font(sz, bold=True):
     cands = (
@@ -130,7 +141,8 @@ def fit_cover(im, cw, ch):
 
 def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path, encoding="utf-8"))
-    accent = ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
+    rub = RUBRICS.get(cfg.get("rubric", ""))
+    accent = rub["color"] if rub else ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
     items = cfg["items"]
     footer = cfg.get("footer", "Сыграй в любую новинку бесплатно")
     pad, gap, row_gap = 40, 24, 22
@@ -141,7 +153,19 @@ def main(cfg_path, out_path):
     ch = int(cw * 215 / 460)   # единый размер карты (формат steam header)
     covers = [fit_cover(load_img(it["img"]), cw, ch) for it in items]
 
-    top = 190              # старт карточек
+    # ── вертикаль шапки считаем ЗАРАНЕЕ (по реальным размерам текста),
+    # чтобы разделитель НИКОГДА не резал subtitle ──
+    meas = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+    title = cfg["title"]
+    for tsz in (60, 56, 50, 46):
+        tf = font(tsz)
+        if tw(meas, title, tf)[0] <= W - pad*2:
+            break
+    ty = 80
+    subtitle = cfg.get("subtitle")
+    sub_y = ty + int(tsz * 1.2)
+    div_y = (sub_y + 44) if subtitle else (sub_y + 8)
+    top = div_y + 26           # старт карточек
     has_price = any(it.get("old") or it.get("new") for it in items)
     undercard = 8 + (50 if has_price else 0)   # под картой только цена (скидки); названия НЕ дублируем — они уже на обложке
     footer_h = 64
@@ -149,34 +173,35 @@ def main(cfg_path, out_path):
     H = top + rows*cell_h + (rows-1)*row_gap + footer_h
 
     canvas = vgrad(W, H).convert("RGBA")
-    glow(canvas, 150, 70, 360, PRIMARY, 42)
-    glow(canvas, W-160, 60, 340, GREEN, 30)
-    glow(canvas, W//2, H-60, 300, GOLD, 18)
+    glow(canvas, 150, 70, 360, accent, 42)
+    glow(canvas, W-160, 60, 340, GREEN if accent != GREEN else PRIMARY, 30)
+    glow(canvas, W//2, H-60, 300, GOLD if accent != GOLD else PRIMARY, 18)
 
-    # ── бренд (по центру, со свечением) ──
+    # ── бренд (по центру, со свечением) + бейдж рубрики в углу ──
     bf = font(34)
     text_with_glow(canvas, [("CUCUMBER ", WHITE, bf), ("GAME", GREEN, bf)], 26, PRIMARY, g=16)
     d = ImageDraw.Draw(canvas)
+    if rub:
+        badge = rub["badge"]
+        bfont = font(22)
+        bw = tw(d, badge, bfont)[0]
+        d.rounded_rectangle([pad, 28, pad + bw + 28, 28 + 38], 19, fill=accent + (235,))
+        d.text((pad + 14, 34), badge, font=bfont, fill=(12, 17, 26) + (255,))
 
-    # ── заголовок (по центру, крупно, со свечением) + платформа (по центру) ──
-    title = cfg["title"]
-    for tsz in (60, 56, 50, 46):
-        tf = font(tsz)
-        if tw(d, title, tf)[0] <= W - pad*2:
-            break
+    # ── заголовок (по центру, крупно, со свечением) + subtitle (по центру) ──
     tx = (W - tw(d, title, tf)[0]) // 2
     sh = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    ImageDraw.Draw(sh).text((tx+2, 84), title, font=tf, fill=(0, 0, 0, 175))
+    ImageDraw.Draw(sh).text((tx+2, ty+4), title, font=tf, fill=(0, 0, 0, 175))
     canvas.alpha_composite(sh.filter(ImageFilter.GaussianBlur(5)))
     layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    ImageDraw.Draw(layer).text((tx, 80), title, font=tf, fill=accent + (255,))
+    ImageDraw.Draw(layer).text((tx, ty), title, font=tf, fill=accent + (255,))
     canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(16)))
     d = ImageDraw.Draw(canvas)
-    d.text((tx, 80), title, font=tf, fill=accent + (255,))
-    if cfg.get("subtitle"):
+    d.text((tx, ty), title, font=tf, fill=accent + (255,))
+    if subtitle:
         sf = font(22, False)
-        d.text(((W - tw(d, cfg["subtitle"], sf)[0]) // 2, 152), cfg["subtitle"], font=sf, fill=GRAY + (255,))
-    divider(canvas, top - 22, pad)
+        d.text(((W - tw(d, subtitle, sf)[0]) // 2, sub_y), subtitle, font=sf, fill=GRAY + (255,))
+    divider(canvas, div_y, pad)
     d = ImageDraw.Draw(canvas)
 
     # ── карточки (сетка, ряды по центру) ──
