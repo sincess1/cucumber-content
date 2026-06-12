@@ -1,0 +1,20 @@
+{
+  "rubric": "sale",
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · до −90%",
+  "brand": "steamgate",
+  "items": [
+    {
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/322330/header.jpg",
+      "tag": "-90%",
+      "old": "$14.99",
+      "new": "$1.49"
+    },
+    {
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/2138710/header.jpg",
+      "tag": "-75%",
+      "old": "$39.99",
+      "new": "$9.99"
+    }
+  ]
+}
