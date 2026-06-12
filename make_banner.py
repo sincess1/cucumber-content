@@ -179,7 +179,10 @@ def main(cfg_path, out_path):
 
     # ── бренд (по центру, со свечением) + бейдж рубрики в углу ──
     bf = font(34)
-    text_with_glow(canvas, [("CUCUMBER ", WHITE, bf), ("GAME", GREEN, bf)], 26, PRIMARY, g=16)
+    if cfg.get("brand") == "steamgate":
+        text_with_glow(canvas, [("STEAM", WHITE, bf), ("GATE", PRIMARY, bf)], 26, PRIMARY, g=16)
+    else:
+        text_with_glow(canvas, [("CUCUMBER ", WHITE, bf), ("GAME", GREEN, bf)], 26, PRIMARY, g=16)
     d = ImageDraw.Draw(canvas)
     if rub:
         badge = rub["badge"]
