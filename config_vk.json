@@ -1,14 +1,14 @@
 {
-  "rubric": "freebie",
-  "title": "ХАЛЯВА",
-  "subtitle": "Steam · бесплатно до 1 июля",
+  "rubric": "sale",
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · −67% · до 18 июня",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/0199af19-1543-7036-b17a-43eac57b3642/banner400.jpg",
-      "tag": "FREE",
-      "old": "$19.99",
-      "new": "бесплатно до 01.07"
+      "img": "https://assets.isthereanydeal.com/018d937f-6ee4-73f5-858c-2fde3c008587/banner400.jpg",
+      "tag": "-67%",
+      "old": "$29.99",
+      "new": "$9.89"
     }
   ]
 }
