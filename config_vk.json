@@ -1,14 +1,14 @@
 {
-  "rubric": "freebie",
-  "title": "ХАЛЯВА",
-  "subtitle": "Steam · бесплатно до 1 июля",
+  "rubric": "sale",
+  "title": "MONSTER HUNTER: WORLD",
+  "subtitle": "Steam  ·  -74% до 18 июня",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/0199af19-1543-7036-b17a-43eac57b3642/banner400.jpg",
-      "tag": "FREE",
-      "old": "$19.99",
-      "new": "бесплатно до 01.07"
+      "img": "https://assets.isthereanydeal.com/018d937e-fd94-7238-a99b-14457502670c/banner400.jpg",
+      "tag": "-74%",
+      "old": "$29.99",
+      "new": "$7.79"
     }
   ]
 }
