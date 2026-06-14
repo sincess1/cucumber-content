@@ -1,14 +1,9 @@
 {
-  "rubric": "freebie",
-  "title": "ХАЛЯВА",
-  "subtitle": "Steam · бесплатно до 1 июля",
+  "rubric": "news",
   "brand": "steamgate",
+  "title": "STEAM NEXT FEST",
+  "subtitle": "Горячее · 15–22 июня · 4900+ демо",
   "items": [
-    {
-      "img": "https://assets.isthereanydeal.com/0199af19-1543-7036-b17a-43eac57b3642/banner400.jpg",
-      "tag": "FREE",
-      "old": "$19.99",
-      "new": "бесплатно до 01.07"
-    }
+    {"img": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/steamworks_docs/english/June_NF_2026_Docs_Banner"}
   ]
 }
