@@ -1,14 +1,20 @@
 {
-  "rubric": "freebie",
-  "title": "ХАЛЯВА",
-  "subtitle": "Steam · бесплатно до 1 июля",
+  "rubric": "sale",
+  "title": "СКИДКИ CAPCOM",
+  "subtitle": "Steam · до 18 июня",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/0199af19-1543-7036-b17a-43eac57b3642/banner400.jpg",
-      "tag": "FREE",
-      "old": "$19.99",
-      "new": "бесплатно до 01.07"
+      "img": "https://assets.isthereanydeal.com/018d937f-64d8-72a9-b6e7-9e34585a016f/banner400.jpg",
+      "tag": "-50%",
+      "old": "$39.99",
+      "new": "$19.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-2459-7030-a3cd-77a8f13b87e9/banner400.jpg",
+      "tag": "-84%",
+      "old": "$29.99",
+      "new": "$4.79"
     }
   ]
 }
