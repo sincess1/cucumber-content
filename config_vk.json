@@ -1,12 +1,20 @@
 {
-  "rubric": "catalog",
-  "title": "ЗАВОЗ В КАТАЛОГ STEAMGATE",
+  "rubric": "sale",
+  "title": "ХОРРОР ПО СКИДКЕ",
+  "subtitle": "Steam · скидки до -90%",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679100/2c7e6498da06cb35b986d345c066b53b88636837/header_alt_assets_1.jpg?t=1781118464",
-      "tag": "NEW",
-      "old": "$22.99"
+      "img": "https://assets.isthereanydeal.com/018d937e-fa07-73ce-a8ee-b9fa1e674392/banner400.jpg",
+      "tag": "-60%",
+      "old": "$19.99",
+      "new": "$7.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-2954-7024-b209-e3586b6b2b4b/banner400.jpg",
+      "tag": "-90%",
+      "old": "$39.99",
+      "new": "$3.99"
     }
   ]
 }
