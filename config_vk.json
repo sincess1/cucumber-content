@@ -1,14 +1,12 @@
 {
-  "rubric": "freebie",
-  "title": "ХАЛЯВА",
-  "subtitle": "Steam · бесплатно до 1 июля",
+  "rubric": "catalog",
+  "title": "ЗАВОЗ В КАТАЛОГ STEAMGATE",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/0199af19-1543-7036-b17a-43eac57b3642/banner400.jpg",
-      "tag": "FREE",
-      "old": "$19.99",
-      "new": "бесплатно до 01.07"
+      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679100/2c7e6498da06cb35b986d345c066b53b88636837/header_alt_assets_1.jpg?t=1781118464",
+      "tag": "NEW",
+      "old": "$22.99"
     }
   ]
 }
