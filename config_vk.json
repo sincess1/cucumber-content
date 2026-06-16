@@ -1,14 +1,14 @@
 {
   "rubric": "sale",
-  "title": "ТОП-СКИДКИ",
-  "subtitle": "Steam · −90%",
+  "title": "CAPCOM SALE",
+  "subtitle": "Steam · горит до 18 июня",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1681430/header.jpg",
-      "tag": "-90%",
+      "img": "https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg",
+      "tag": "-80%",
       "old": "$39.99",
-      "new": "$3.99 до 25 июня"
+      "new": "$7.99"
     }
   ]
 }
