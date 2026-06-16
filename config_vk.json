@@ -1,14 +1,20 @@
 {
   "rubric": "sale",
-  "title": "ТОП-СКИДКИ",
-  "subtitle": "Steam · −90%",
+  "title": "ГОРЯТ ДО 18 ИЮНЯ",
+  "subtitle": "Steam · скидки до -75%",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1681430/header.jpg",
-      "tag": "-90%",
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/1462040/header.jpg",
+      "tag": "-65%",
       "old": "$39.99",
-      "new": "$3.99 до 25 июня"
+      "new": "$13.99"
+    },
+    {
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/220240/header.jpg",
+      "tag": "-75%",
+      "old": "$19.99",
+      "new": "$4.99"
     }
   ]
 }
