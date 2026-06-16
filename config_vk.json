@@ -1,14 +1,20 @@
 {
   "rubric": "sale",
-  "title": "CAPCOM SALE",
-  "subtitle": "Steam · горит до 18 июня",
+  "title": "LIKE A DRAGON",
+  "subtitle": "Steam · скидки −75% · до 18 июня",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg",
-      "tag": "-80%",
-      "old": "$39.99",
-      "new": "$7.99"
+      "img": "https://assets.isthereanydeal.com/018d937f-7515-714c-a729-3ee2fa98effc/banner400.jpg",
+      "tag": "-75%",
+      "old": "$69.99",
+      "new": "$17.49"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/01920f27-372f-735d-ac2c-aecacd8ba1b9/banner400.jpg",
+      "tag": "-75%",
+      "old": "$59.99",
+      "new": "$14.99"
     }
   ]
 }
