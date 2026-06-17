@@ -1,14 +1,26 @@
 {
   "rubric": "sale",
-  "title": "CAPCOM SALE — ПОСЛЕДНИЙ ДЕНЬ",
-  "subtitle": "Steam · до 18 июня",
+  "title": "ТОП-СКИДКИ",
+  "subtitle": "Steam · скидки -60%",
   "brand": "steamgate",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/018d937f-74c1-708e-8193-97dfbe6a98fe/banner400.jpg",
-      "tag": "-75%",
-      "old": "$39.99",
+      "img": "https://assets.isthereanydeal.com/018d937e-fef7-7274-bbce-e7d155c3d2d1/banner400.jpg?t=1781639111",
+      "tag": "-60%",
+      "old": "$19.99",
+      "new": "$7.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-4ce3-73f6-8d3e-0726e8a19b0a/banner400.jpg?t=1760030463",
+      "tag": "-60%",
+      "old": "$24.99",
       "new": "$9.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-7513-7235-8db4-e6b96ab7e7a8/banner400.jpg?t=1776386712",
+      "tag": "-60%",
+      "old": "$49.99",
+      "new": "$19.99"
     }
   ]
 }
