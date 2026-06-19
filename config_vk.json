@@ -1,11 +1,32 @@
 {
-  "rubric": "news",
-  "title": "GTA V ENHANCED БЕСПЛАТНО",
-  "subtitle": "Горячее · апгрейд для PC",
+  "rubric": "sale",
   "brand": "steamgate",
+  "title": "EA PUBLISHER SALE",
+  "subtitle": "Steam · до 25 июня · скидки до 92%",
   "items": [
     {
-      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782"
+      "img": "https://assets.isthereanydeal.com/018d937f-4a27-72c8-9837-8ec5e5e92932/banner400.jpg",
+      "tag": "-70%",
+      "old": "$39.99",
+      "new": "$11.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-4b67-7020-aac6-246767f92aa6/banner400.jpg",
+      "tag": "-92%",
+      "old": "$59.99",
+      "new": "$4.79"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-699e-7346-b27c-0b1b48f926c3/banner400.jpg",
+      "tag": "-90%",
+      "old": "$59.99",
+      "new": "$5.99"
+    },
+    {
+      "img": "https://assets.isthereanydeal.com/018d937f-2979-72d3-b30e-beb459582423/banner400.jpg",
+      "tag": "-90%",
+      "old": "$39.99",
+      "new": "$3.99"
     }
   ]
 }
