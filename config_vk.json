@@ -1,11 +1,16 @@
 {
-  "rubric": "news",
-  "title": "GTA V ENHANCED БЕСПЛАТНО",
-  "subtitle": "Горячее · апгрейд для PC",
+  "title": "СКИДКИ 19 ИЮНЯ",
+  "subtitle": "Steam · до 25 июня · скидки до -80%",
+  "rubric": "sale",
   "brand": "steamgate",
   "items": [
-    {
-      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1781187782"
-    }
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2909400/header.jpg", "tag": "-60%", "old": "$49.99", "new": "$19.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1774580/header.jpg", "tag": "-80%", "old": "$69.99", "new": "$13.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/208650/header.jpg", "tag": "-80%", "old": "$19.99", "new": "$3.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1850570/header.jpg", "tag": "-65%", "old": "$39.99", "new": "$13.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1971870/header.jpg", "tag": "-80%", "old": "$49.99", "new": "$9.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2478970/header.jpg", "tag": "-70%", "old": "$29.99", "new": "$8.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2513280/header.jpg", "tag": "-70%", "old": "$49.99", "new": "$14.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/209000/header.jpg", "tag": "-80%", "old": "$19.99", "new": "$3.99"}
   ]
 }
