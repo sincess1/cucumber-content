@@ -1,44 +1,11 @@
 {
-  "rubric": "sale",
-  "title": "ТОП-СКИДКИ",
-  "subtitle": "Steam · скидки до -85%",
+  "rubric": "news",
   "brand": "steamgate",
+  "title": "ELDEN RING TARNISHED EDITION",
+  "subtitle": "Горячее · платное DLC, 28 августа",
   "items": [
     {
-      "img": "https://assets.isthereanydeal.com/018d937f-6990-73cf-b4c2-abef94962c8a/banner400.jpg",
-      "tag": "-50%",
-      "old": "$29.99",
-      "new": "$14.99"
-    },
-    {
-      "img": "https://assets.isthereanydeal.com/018d937f-5ccf-7344-a579-d8feb6ba83cf/banner400.jpg",
-      "tag": "-50%",
-      "old": "$24.99",
-      "new": "$12.49"
-    },
-    {
-      "img": "https://assets.isthereanydeal.com/018d937f-4293-7217-a8d5-41fbae8f2929/banner400.jpg",
-      "tag": "-85%",
-      "old": "$39.99",
-      "new": "$5.99"
-    },
-    {
-      "img": "https://assets.isthereanydeal.com/018d937f-4263-733b-b061-5d1945668bdd/banner400.jpg",
-      "tag": "-60%",
-      "old": "$19.99",
-      "new": "$7.99"
-    },
-    {
-      "img": "https://assets.isthereanydeal.com/018d937f-1ac0-710a-bf0f-d7988dc1cfd2/banner400.jpg",
-      "tag": "-80%",
-      "old": "$14.99",
-      "new": "$2.99"
-    },
-    {
-      "img": "https://assets.isthereanydeal.com/018d937f-4d3b-7333-8666-20f85ab1a1c3/banner400.jpg",
-      "tag": "-80%",
-      "old": "$19.99",
-      "new": "$3.99"
+      "img": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg"
     }
   ]
 }
