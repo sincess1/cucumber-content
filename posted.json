@@ -734,6 +734,16 @@
     {
       "name": "CS2 Cache Premier S5",
       "date": "2026-06-23"
+    },
+    {
+      "name": "Citizen Sleeper",
+      "date": "2026-06-23",
+      "free_until": "2026-06-25"
+    },
+    {
+      "name": "ROBOBEAT",
+      "date": "2026-06-23",
+      "free_until": "2026-06-25"
     }
   ]
 }
