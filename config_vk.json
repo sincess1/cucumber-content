@@ -1,11 +1,16 @@
 {
-  "rubric": "news",
-  "title": "ONIMUSHA WAY OF THE SWORD",
-  "subtitle": "Горячее · демо в Steam бесплатно",
+  "rubric": "sale",
+  "title": "СКИДКИ 23 ИЮНЯ",
+  "subtitle": "Steam · Horizon Sale · до −84%",
   "brand": "steamgate",
   "items": [
-    {
-      "img": "https://cdn.akamai.steamstatic.com/steam/apps/2638890/header.jpg"
-    }
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/2420110/header.jpg", "tag": "-50%", "old": "$59.99", "new": "$29.99"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/2561580/header.jpg", "tag": "-40%", "old": "$49.99", "new": "$29.99"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/1620730/header.jpg", "tag": "-60%", "old": "$49.99", "new": "$19.99 / 1199р"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/1522160/header.jpg", "tag": "-50%", "old": "$39.99", "new": "$19.99"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/2492040/header.jpg", "tag": "-40%", "old": "$49.99", "new": "$29.99 / 714р"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/597820/header.jpg", "tag": "-75%", "old": "$39.99", "new": "$9.99 / 499р"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/775500/header.jpg", "tag": "-84%", "old": "$59.99", "new": "$9.59 / 335р"},
+    {"img": "https://cdn.cloudflare.steamstatic.com/steam/apps/884050/header.jpg", "tag": "-75%", "old": "$29.99", "new": "$7.49"}
   ]
 }
