@@ -1,42 +1,6 @@
 {
   "posted": [
     {
-      "name": "Solarpunk",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Vampyr",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Spyro: A Realm Beyond",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Killer Bean",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Metro 2039",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Valheim 1.0",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Persona 6",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "Stronghold 4",
-      "date": "2026-06-08"
-    },
-    {
-      "name": "The Talos Principle",
-      "date": "2026-06-08"
-    },
-    {
       "name": "Nintendo Direct",
       "date": "2026-06-09"
     },
@@ -714,6 +678,54 @@
     {
       "name": "Onimusha: Way of the Sword",
       "date": "2026-06-22"
+    },
+    {
+      "name": "🎪 Sony Horizon Sale",
+      "date": "2026-06-23"
+    },
+    {
+      "name": "Horizon Forbidden West CE",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "Horizon Zero Dawn Remastered",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "Hell is Us",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "Disney Epic Mickey: Rebrushed",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "FATAL FURY: City of the Wolves",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "BIOMUTANT",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "Scarlet Nexus",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "SpongeBob: BfBB Rehydrated",
+      "date": "2026-06-23",
+      "sale_until": "2026-06-25"
+    },
+    {
+      "name": "🔥 скидки 2026-06-23",
+      "date": "2026-06-23"
     }
   ]
 }
