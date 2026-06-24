@@ -1,0 +1,11 @@
+{
+  "rubric": "sale",
+  "title": "ЛЕТНЯЯ РАСПРОДАЖА STEAM",
+  "subtitle": "Старт 25 июня · до 9 июля · до -90%",
+  "items": [
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg", "tag": "25 июня"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg", "tag": "25 июня"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2668510/header.jpg", "tag": "25 июня"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg", "tag": "25 июня"}
+  ]
+}
