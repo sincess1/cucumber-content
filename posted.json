@@ -1,46 +1,6 @@
 {
   "posted": [
     {
-      "name": "Final Fantasy Resonance",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Minecraft Dungeons II",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Fire Emblem: Fortune's Weave",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "33 Immortals",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "The Wolf Among Us 2",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Xenoblade Genesis",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Witchspire",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "State of Decay 3",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Planet Zoo 2",
-      "date": "2026-06-10"
-    },
-    {
-      "name": "Vampire: The Masquerade - Bloodlines 2: The Flower & the Flame",
-      "date": "2026-06-10"
-    },
-    {
       "name": "Unrailed 2: Back on Track",
       "date": "2026-06-11"
     },
@@ -768,6 +728,10 @@
     {
       "name": "Gothic 1 Remake",
       "date": "2026-06-24"
+    },
+    {
+      "name": "Subnautica 2",
+      "date": "2026-06-25"
     }
   ]
 }
