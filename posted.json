@@ -988,6 +988,16 @@
     {
       "name": "Halo: Campaign Evolved",
       "date": "2026-06-26"
+    },
+    {
+      "name": "RollerCoaster Tycoon 3: Complete Edition",
+      "date": "2026-06-26",
+      "free_until": "2026-07-02"
+    },
+    {
+      "name": "Voidwrought",
+      "date": "2026-06-26",
+      "free_until": "2026-07-02"
     }
   ]
 }
