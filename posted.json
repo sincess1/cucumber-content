@@ -1,1046 +1,1050 @@
 {
-  "posted": [
-    {
-      "name": "Gravity Circuit",
-      "date": "2026-06-13"
-    },
-    {
-      "name": "Clair Obscur: Expedition 33",
-      "date": "2026-06-13"
-    },
-    {
-      "name": "Frostpunk 2",
-      "date": "2026-06-13"
-    },
-    {
-      "name": "Tell Me Why: Chapter 1",
-      "date": "2026-06-13",
-      "free_until": "2026-07-01"
-    },
-    {
-      "name": "Monster Hunter: World",
-      "date": "2026-06-13"
-    },
-    {
-      "name": "Pacific Drive",
-      "date": "2026-06-13"
-    },
-    {
-      "name": "🎪 Steam Next Fest June 2026",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "Street Fighter 6",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "Dragon's Dogma: Dark Arisen",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "🆕 Witchspire",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "Resident Evil 7 Biohazard",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "Scorn",
-      "date": "2026-06-14"
-    },
-    {
-      "name": "RoboCop: Rogue City",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Assassin's Creed Odyssey",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Assassin's Creed Valhalla",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Furi",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Nobody Saves the World",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Dead by Daylight Jason Voorhees",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Split Fiction",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Civilization VI",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "FINAL FANTASY VII REMAKE INTERGRADE",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Far Cry 3",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Resident Evil 2 (2019)",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Like a Dragon: Infinite Wealth",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Like a Dragon: Pirate Yakuza in Hawaii",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "🔥 скидки 2026-06-16",
-      "date": "2026-06-16"
-    },
-    {
-      "name": "Dead by Daylight",
-      "date": "2026-06-17",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "TMNT: Shredder's Revenge",
-      "date": "2026-06-17",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Tales of Arise",
-      "date": "2026-06-17",
-      "sale_until": "2026-06-24"
-    },
-    {
-      "name": "🔥 скидки 2026-06-17",
-      "date": "2026-06-17"
-    },
-    {
-      "name": "Among Us Story: On Guard",
-      "date": "2026-06-17"
-    },
-    {
-      "name": "EMPULSE",
-      "date": "2026-06-17"
-    },
-    {
-      "name": "Assassin's Creed Shadows",
-      "date": "2026-06-17"
-    },
-    {
-      "name": "GTA VI release date",
-      "date": "2026-06-17"
-    },
-    {
-      "name": "🔥 скидки 2026-06-18",
-      "date": "2026-06-18"
-    },
-    {
-      "name": "Hi-Fi RUSH",
-      "date": "2026-06-18",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Cult of the Lamb",
-      "date": "2026-06-18",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Enter the Gungeon",
-      "date": "2026-06-18",
-      "sale_until": "2026-06-22"
-    },
-    {
-      "name": "GTA V Enhanced free upgrade",
-      "date": "2026-06-18"
-    },
-    {
-      "name": "The Adventures of Elliot: The Millennium Tales",
-      "date": "2026-06-18"
-    },
-    {
-      "name": "Steam Machine",
-      "date": "2026-06-18"
-    },
-    {
-      "name": "🎪 CD Projekt Publisher Sale",
-      "date": "2026-06-18"
-    },
-    {
-      "name": "🎪 EA Publisher Sale",
-      "date": "2026-06-19"
-    },
-    {
-      "name": "It Takes Two",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Mass Effect Legendary Edition",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Dead Space (2023)",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Star Wars Jedi: Fallen Order",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "FINAL FANTASY VII REBIRTH",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "STAR WARS Jedi: Survivor",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Batman: Arkham Knight",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "DEATH STRANDING DIRECTOR'S CUT",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Mortal Kombat 1",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Tomb Raider I-III Remastered",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Sonic X Shadow Generations",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Batman: Arkham Origins",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "🔥 скидки 2026-06-19",
-      "date": "2026-06-19"
-    },
-    {
-      "name": "🆕 City Car Driving 2.0",
-      "date": "2026-06-19"
-    },
-    {
-      "name": "Battlefield 6",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Dragon Age: The Veilguard",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Need for Speed Heat",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Titanfall 2",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Battlefield 1",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "DayZ",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Injustice 2",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Sniper Elite 5",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "World War Z",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Mirror's Edge Catalyst",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Remnant II",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Arma 3",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Spore",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Kerbal Space Program",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Sonic Racing: CrossWorlds",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Human Fall Flat",
-      "date": "2026-06-19",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "GTA VI cover art",
-      "date": "2026-06-19"
-    },
-    {
-      "name": "Cyberpunk 2077",
-      "date": "2026-06-20",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "The Witcher 3: Wild Hunt",
-      "date": "2026-06-20",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Borderlands 3",
-      "date": "2026-06-20",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Sonic Mania",
-      "date": "2026-06-20",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "🔥 скидки 2026-06-20",
-      "date": "2026-06-20"
-    },
-    {
-      "name": "Bobby Prince Doom composer death",
-      "date": "2026-06-20"
-    },
-    {
-      "name": "Elden Ring Tarnished Edition",
-      "date": "2026-06-20"
-    },
-    {
-      "name": "🔥 скидки 2026-06-21",
-      "date": "2026-06-21"
-    },
-    {
-      "name": "Battlefield 2042",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Deep Rock Galactic",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Ghostrunner",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Wreckfest",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Alice: Madness Returns",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Hell Let Loose",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Remnant: From the Ashes",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Citizen Sleeper",
-      "date": "2026-06-21",
-      "sale_until": "2026-06-21"
-    },
-    {
-      "name": "Final Fantasy VII Revelation",
-      "date": "2026-06-21"
-    },
-    {
-      "name": "🆕 Burglin' Gnomes",
-      "date": "2026-06-21"
-    },
-    {
-      "name": "🔥 скидки 2026-06-22",
-      "date": "2026-06-22"
-    },
-    {
-      "name": "Red Dead Redemption",
-      "date": "2026-06-22",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Dragon Age: Origins",
-      "date": "2026-06-22",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Tomb Raider IV-VI Remastered",
-      "date": "2026-06-22",
-      "sale_until": "2026-06-24"
-    },
-    {
-      "name": "Mass Effect: Andromeda",
-      "date": "2026-06-22",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Resident Evil Veronica",
-      "date": "2026-06-22"
-    },
-    {
-      "name": "Echoes of Aincrad",
-      "date": "2026-06-22"
-    },
-    {
-      "name": "Onimusha: Way of the Sword",
-      "date": "2026-06-22"
-    },
-    {
-      "name": "🎪 Sony Horizon Sale",
-      "date": "2026-06-23"
-    },
-    {
-      "name": "Horizon Forbidden West CE",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Horizon Zero Dawn Remastered",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Hell is Us",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Disney Epic Mickey: Rebrushed",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "FATAL FURY: City of the Wolves",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "BIOMUTANT",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Scarlet Nexus",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "SpongeBob: BfBB Rehydrated",
-      "date": "2026-06-23",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "🔥 скидки 2026-06-23",
-      "date": "2026-06-23"
-    },
-    {
-      "name": "Steam Machine цены раскрыты",
-      "date": "2026-06-23"
-    },
-    {
-      "name": "CS2 Cache Premier S5",
-      "date": "2026-06-23"
-    },
-    {
-      "name": "Citizen Sleeper",
-      "date": "2026-06-23",
-      "free_until": "2026-06-25"
-    },
-    {
-      "name": "ROBOBEAT",
-      "date": "2026-06-23",
-      "free_until": "2026-06-25"
-    },
-    {
-      "name": "Dragon's Dogma 2: Dark Arisen",
-      "date": "2026-06-23"
-    },
-    {
-      "name": "🔥 скидки 2026-06-24",
-      "date": "2026-06-24"
-    },
-    {
-      "name": "Final Fantasy Tactics - The Ivalice Chronicles",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "FINAL FANTASY XII THE ZODIAC AGE",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "FINAL FANTASY X/X-2 HD Remaster",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Don't Starve Together",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Assetto Corsa",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Golf With Your Friends",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Overcooked! 2",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Destroy All Humans!",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Darksiders III",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Darksiders Genesis",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Borderlands 2",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "Borderlands: The Pre-Sequel",
-      "date": "2026-06-24",
-      "sale_until": "2026-06-25"
-    },
-    {
-      "name": "GTA VI предзаказы",
-      "date": "2026-06-24"
-    },
-    {
-      "name": "🎪 Steam Summer Sale 2026",
-      "date": "2026-06-24"
-    },
-    {
-      "name": "Stronghold 4 demo",
-      "date": "2026-06-24"
-    },
-    {
-      "name": "Gothic 1 Remake",
-      "date": "2026-06-24"
-    },
-    {
-      "name": "Subnautica 2",
-      "date": "2026-06-25"
-    },
-    {
-      "name": "🎪 Sony Publisher Sale",
-      "date": "2026-06-25"
-    },
-    {
-      "name": "🔥 скидки 2026-06-25",
-      "date": "2026-06-25"
-    },
-    {
-      "name": "God of War Ragnarök",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Marvel's Spider-Man Remastered",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Last of Us Part I",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Ghost of Tsushima DIRECTOR'S CUT",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "SILENT HILL 2",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Marvel's Spider-Man 2",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Marvel's Spider-Man: Miles Morales",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Stellar Blade",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Ratchet & Clank: Rift Apart",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "HELLDIVERS 2",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Horizon Forbidden West Complete Edition",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Returnal",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Until Dawn",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Sackboy: A Big Adventure",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Horizon Zero Dawn Remastered",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "God of War",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Last of Us Part II Remastered",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "DEATH STRANDING DIRECTOR'S CUT",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "DEATH STRANDING 2: ON THE BEACH",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "SILENT HILL f",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Nioh 2 - The Complete Edition",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Marvel's Midnight Suns",
-      "date": "2026-06-25",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "🔥 скидки 2026-06-26",
-      "date": "2026-06-26"
-    },
-    {
-      "name": "Red Dead Redemption 2",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Baldur's Gate 3",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Hogwarts Legacy",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Monster Hunter Wilds",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Borderlands 4",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Kingdom Come: Deliverance II",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Indiana Jones and the Great Circle",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Detroit: Become Human",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "DOOM: The Dark Ages",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Disco Elysium - The Final Cut",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "No Man's Sky",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Hades II",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Sekiro: Shadows Die Twice - GOTY Edition",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Ready Or Not",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Days Gone",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Stray",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Dune: Awakening",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Outer Wilds",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "UNCHARTED: Legacy of Thieves Collection",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Mafia: The Old Country",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Persona 3 Reload",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Metaphor: ReFantazio",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "ARMORED CORE VI FIRES OF RUBICON",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Warhammer 40,000: Space Marine 2",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Hollow Knight: Silksong",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Mafia: Definitive Edition",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Persona 5 Royal",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Elder Scrolls V: Skyrim Special Edition",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Planet Zoo",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Wreckfest",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Invincible",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Binding of Isaac: Rebirth",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Voidwrought",
-      "date": "2026-06-26",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Halo: Campaign Evolved",
-      "date": "2026-06-26"
-    },
-    {
-      "name": "RollerCoaster Tycoon 3: Complete Edition",
-      "date": "2026-06-26",
-      "free_until": "2026-07-02"
-    },
-    {
-      "name": "Voidwrought",
-      "date": "2026-06-26",
-      "free_until": "2026-07-02"
-    },
-    {
-      "name": "DELTARUNE",
-      "date": "2026-06-26"
-    },
-    {
-      "name": "Дальнобойщики 2",
-      "date": "2026-06-26"
-    },
-    {
-      "name": "POPGOES Arcade",
-      "date": "2026-06-26",
-      "free_until": "2026-06-28"
-    },
-    {
-      "name": "🔥 скидки 2026-06-27",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "Clair Obscur: Expedition 33",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Cyberpunk 2077",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Elder Scrolls IV: Oblivion Remastered",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Balatro",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Monster Hunter: World",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Resident Evil Village",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "NieR: Automata",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Blue Prince",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Resident Evil 2",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Far Cry 4",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Hades",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "DOOM Eternal",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "LEGO Star Wars: The Skywalker Saga",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Like a Dragon: Infinite Wealth",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Resident Evil 4",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "The Alters",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Frostpunk 2",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Devil May Cry 5",
-      "date": "2026-06-27",
-      "sale_until": "2026-07-09"
-    },
-    {
-      "name": "Assassin's Creed Black Flag Resynced",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "🆕 The Adventures of Elliot: The Millennium Tales",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "🆕 Retro Rewind: Video Store Simulator",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "🆕 The Operator",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "🆕 OPERATOR",
-      "date": "2026-06-27"
-    },
-    {
-      "name": "🆕 Megastore Simulator",
-      "date": "2026-06-27"
-    }
-  ]
+    "posted": [
+        {
+            "name": "Gravity Circuit",
+            "date": "2026-06-13"
+        },
+        {
+            "name": "Clair Obscur: Expedition 33",
+            "date": "2026-06-13"
+        },
+        {
+            "name": "Frostpunk 2",
+            "date": "2026-06-13"
+        },
+        {
+            "name": "Tell Me Why: Chapter 1",
+            "date": "2026-06-13",
+            "free_until": "2026-07-01"
+        },
+        {
+            "name": "Monster Hunter: World",
+            "date": "2026-06-13"
+        },
+        {
+            "name": "Pacific Drive",
+            "date": "2026-06-13"
+        },
+        {
+            "name": "🎪 Steam Next Fest June 2026",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "Street Fighter 6",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "Dragon's Dogma: Dark Arisen",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "🆕 Witchspire",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "Resident Evil 7 Biohazard",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "Scorn",
+            "date": "2026-06-14"
+        },
+        {
+            "name": "RoboCop: Rogue City",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Assassin's Creed Odyssey",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Assassin's Creed Valhalla",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Furi",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Nobody Saves the World",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Dead by Daylight Jason Voorhees",
+            "date": "2026-06-15"
+        },
+        {
+            "name": "Split Fiction",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Civilization VI",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Far Cry 3",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Resident Evil 2 (2019)",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Like a Dragon: Infinite Wealth",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Like a Dragon: Pirate Yakuza in Hawaii",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "🔥 скидки 2026-06-16",
+            "date": "2026-06-16"
+        },
+        {
+            "name": "Dead by Daylight",
+            "date": "2026-06-17",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "TMNT: Shredder's Revenge",
+            "date": "2026-06-17",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Tales of Arise",
+            "date": "2026-06-17",
+            "sale_until": "2026-06-24"
+        },
+        {
+            "name": "🔥 скидки 2026-06-17",
+            "date": "2026-06-17"
+        },
+        {
+            "name": "Among Us Story: On Guard",
+            "date": "2026-06-17"
+        },
+        {
+            "name": "EMPULSE",
+            "date": "2026-06-17"
+        },
+        {
+            "name": "Assassin's Creed Shadows",
+            "date": "2026-06-17"
+        },
+        {
+            "name": "GTA VI release date",
+            "date": "2026-06-17"
+        },
+        {
+            "name": "🔥 скидки 2026-06-18",
+            "date": "2026-06-18"
+        },
+        {
+            "name": "Hi-Fi RUSH",
+            "date": "2026-06-18",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Cult of the Lamb",
+            "date": "2026-06-18",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Enter the Gungeon",
+            "date": "2026-06-18",
+            "sale_until": "2026-06-22"
+        },
+        {
+            "name": "GTA V Enhanced free upgrade",
+            "date": "2026-06-18"
+        },
+        {
+            "name": "The Adventures of Elliot: The Millennium Tales",
+            "date": "2026-06-18"
+        },
+        {
+            "name": "Steam Machine",
+            "date": "2026-06-18"
+        },
+        {
+            "name": "🎪 CD Projekt Publisher Sale",
+            "date": "2026-06-18"
+        },
+        {
+            "name": "🎪 EA Publisher Sale",
+            "date": "2026-06-19"
+        },
+        {
+            "name": "It Takes Two",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Mass Effect Legendary Edition",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Dead Space (2023)",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Star Wars Jedi: Fallen Order",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "FINAL FANTASY VII REBIRTH",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "STAR WARS Jedi: Survivor",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Batman: Arkham Knight",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "DEATH STRANDING DIRECTOR'S CUT",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Mortal Kombat 1",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Tomb Raider I-III Remastered",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Sonic X Shadow Generations",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Batman: Arkham Origins",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "🔥 скидки 2026-06-19",
+            "date": "2026-06-19"
+        },
+        {
+            "name": "🆕 City Car Driving 2.0",
+            "date": "2026-06-19"
+        },
+        {
+            "name": "Battlefield 6",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Dragon Age: The Veilguard",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Need for Speed Heat",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Titanfall 2",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Battlefield 1",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "DayZ",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Injustice 2",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Sniper Elite 5",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "World War Z",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Mirror's Edge Catalyst",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Remnant II",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Arma 3",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Spore",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Kerbal Space Program",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Sonic Racing: CrossWorlds",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Human Fall Flat",
+            "date": "2026-06-19",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "GTA VI cover art",
+            "date": "2026-06-19"
+        },
+        {
+            "name": "Cyberpunk 2077",
+            "date": "2026-06-20",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "The Witcher 3: Wild Hunt",
+            "date": "2026-06-20",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Borderlands 3",
+            "date": "2026-06-20",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Sonic Mania",
+            "date": "2026-06-20",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "🔥 скидки 2026-06-20",
+            "date": "2026-06-20"
+        },
+        {
+            "name": "Bobby Prince Doom composer death",
+            "date": "2026-06-20"
+        },
+        {
+            "name": "Elden Ring Tarnished Edition",
+            "date": "2026-06-20"
+        },
+        {
+            "name": "🔥 скидки 2026-06-21",
+            "date": "2026-06-21"
+        },
+        {
+            "name": "Battlefield 2042",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Deep Rock Galactic",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Ghostrunner",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Wreckfest",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Alice: Madness Returns",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Hell Let Loose",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Remnant: From the Ashes",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Citizen Sleeper",
+            "date": "2026-06-21",
+            "sale_until": "2026-06-21"
+        },
+        {
+            "name": "Final Fantasy VII Revelation",
+            "date": "2026-06-21"
+        },
+        {
+            "name": "🆕 Burglin' Gnomes",
+            "date": "2026-06-21"
+        },
+        {
+            "name": "🔥 скидки 2026-06-22",
+            "date": "2026-06-22"
+        },
+        {
+            "name": "Red Dead Redemption",
+            "date": "2026-06-22",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Dragon Age: Origins",
+            "date": "2026-06-22",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Tomb Raider IV-VI Remastered",
+            "date": "2026-06-22",
+            "sale_until": "2026-06-24"
+        },
+        {
+            "name": "Mass Effect: Andromeda",
+            "date": "2026-06-22",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Resident Evil Veronica",
+            "date": "2026-06-22"
+        },
+        {
+            "name": "Echoes of Aincrad",
+            "date": "2026-06-22"
+        },
+        {
+            "name": "Onimusha: Way of the Sword",
+            "date": "2026-06-22"
+        },
+        {
+            "name": "🎪 Sony Horizon Sale",
+            "date": "2026-06-23"
+        },
+        {
+            "name": "Horizon Forbidden West CE",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Horizon Zero Dawn Remastered",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Hell is Us",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Disney Epic Mickey: Rebrushed",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "FATAL FURY: City of the Wolves",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "BIOMUTANT",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Scarlet Nexus",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "SpongeBob: BfBB Rehydrated",
+            "date": "2026-06-23",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "🔥 скидки 2026-06-23",
+            "date": "2026-06-23"
+        },
+        {
+            "name": "Steam Machine цены раскрыты",
+            "date": "2026-06-23"
+        },
+        {
+            "name": "CS2 Cache Premier S5",
+            "date": "2026-06-23"
+        },
+        {
+            "name": "Citizen Sleeper",
+            "date": "2026-06-23",
+            "free_until": "2026-06-25"
+        },
+        {
+            "name": "ROBOBEAT",
+            "date": "2026-06-23",
+            "free_until": "2026-06-25"
+        },
+        {
+            "name": "Dragon's Dogma 2: Dark Arisen",
+            "date": "2026-06-23"
+        },
+        {
+            "name": "🔥 скидки 2026-06-24",
+            "date": "2026-06-24"
+        },
+        {
+            "name": "Final Fantasy Tactics - The Ivalice Chronicles",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "FINAL FANTASY XII THE ZODIAC AGE",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "FINAL FANTASY X/X-2 HD Remaster",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Don't Starve Together",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Assetto Corsa",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Golf With Your Friends",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Overcooked! 2",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Destroy All Humans!",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Darksiders III",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Darksiders Genesis",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Borderlands 2",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "Borderlands: The Pre-Sequel",
+            "date": "2026-06-24",
+            "sale_until": "2026-06-25"
+        },
+        {
+            "name": "GTA VI предзаказы",
+            "date": "2026-06-24"
+        },
+        {
+            "name": "🎪 Steam Summer Sale 2026",
+            "date": "2026-06-24"
+        },
+        {
+            "name": "Stronghold 4 demo",
+            "date": "2026-06-24"
+        },
+        {
+            "name": "Gothic 1 Remake",
+            "date": "2026-06-24"
+        },
+        {
+            "name": "Subnautica 2",
+            "date": "2026-06-25"
+        },
+        {
+            "name": "🎪 Sony Publisher Sale",
+            "date": "2026-06-25"
+        },
+        {
+            "name": "🔥 скидки 2026-06-25",
+            "date": "2026-06-25"
+        },
+        {
+            "name": "God of War Ragnarök",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Marvel's Spider-Man Remastered",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Last of Us Part I",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Ghost of Tsushima DIRECTOR'S CUT",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "SILENT HILL 2",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Marvel's Spider-Man 2",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Marvel's Spider-Man: Miles Morales",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Stellar Blade",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Ratchet & Clank: Rift Apart",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "HELLDIVERS 2",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Horizon Forbidden West Complete Edition",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Returnal",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Until Dawn",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Sackboy: A Big Adventure",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Horizon Zero Dawn Remastered",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "God of War",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Last of Us Part II Remastered",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "DEATH STRANDING DIRECTOR'S CUT",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "DEATH STRANDING 2: ON THE BEACH",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "SILENT HILL f",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Nioh 2 - The Complete Edition",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Marvel's Midnight Suns",
+            "date": "2026-06-25",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "🔥 скидки 2026-06-26",
+            "date": "2026-06-26"
+        },
+        {
+            "name": "Red Dead Redemption 2",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Baldur's Gate 3",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Hogwarts Legacy",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Monster Hunter Wilds",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Borderlands 4",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Kingdom Come: Deliverance II",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Indiana Jones and the Great Circle",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Detroit: Become Human",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "DOOM: The Dark Ages",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Disco Elysium - The Final Cut",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "No Man's Sky",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Hades II",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Sekiro: Shadows Die Twice - GOTY Edition",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Ready Or Not",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Days Gone",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Stray",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Dune: Awakening",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Outer Wilds",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "UNCHARTED: Legacy of Thieves Collection",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Mafia: The Old Country",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Persona 3 Reload",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Metaphor: ReFantazio",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "ARMORED CORE VI FIRES OF RUBICON",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Warhammer 40,000: Space Marine 2",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Hollow Knight: Silksong",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Mafia: Definitive Edition",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Persona 5 Royal",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Elder Scrolls V: Skyrim Special Edition",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Planet Zoo",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Wreckfest",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Invincible",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Binding of Isaac: Rebirth",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Voidwrought",
+            "date": "2026-06-26",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Halo: Campaign Evolved",
+            "date": "2026-06-26"
+        },
+        {
+            "name": "RollerCoaster Tycoon 3: Complete Edition",
+            "date": "2026-06-26",
+            "free_until": "2026-07-02"
+        },
+        {
+            "name": "Voidwrought",
+            "date": "2026-06-26",
+            "free_until": "2026-07-02"
+        },
+        {
+            "name": "DELTARUNE",
+            "date": "2026-06-26"
+        },
+        {
+            "name": "Дальнобойщики 2",
+            "date": "2026-06-26"
+        },
+        {
+            "name": "POPGOES Arcade",
+            "date": "2026-06-26",
+            "free_until": "2026-06-28"
+        },
+        {
+            "name": "🔥 скидки 2026-06-27",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "Clair Obscur: Expedition 33",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Cyberpunk 2077",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Elder Scrolls IV: Oblivion Remastered",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Balatro",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Monster Hunter: World",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Resident Evil Village",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "NieR: Automata",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Blue Prince",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Resident Evil 2",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Far Cry 4",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Hades",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "DOOM Eternal",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "LEGO Star Wars: The Skywalker Saga",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Like a Dragon: Infinite Wealth",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Resident Evil 4",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "The Alters",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Frostpunk 2",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Devil May Cry 5",
+            "date": "2026-06-27",
+            "sale_until": "2026-07-09"
+        },
+        {
+            "name": "Assassin's Creed Black Flag Resynced",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "🆕 The Adventures of Elliot: The Millennium Tales",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "🆕 Retro Rewind: Video Store Simulator",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "🆕 The Operator",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "🆕 OPERATOR",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "🆕 Megastore Simulator",
+            "date": "2026-06-27"
+        },
+        {
+            "name": "GTA VI физическое издание",
+            "date": "2026-06-27"
+        }
+    ]
 }
