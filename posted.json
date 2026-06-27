@@ -1,94 +1,6 @@
 {
   "posted": [
     {
-      "name": "🎪 Square Enix Publisher Sale",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "🎪 Devolver Publisher Sale",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "DAVE THE DIVER",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "DREDGE",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Blasphemous 2",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Atomic Heart",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Trepang2",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "A Plague Tale: Innocence",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Hearts of Iron IV",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Oxygen Not Included",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Dying Light 2 Stay Human",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Final Fantasy XVI",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Crisis Core FF VII Reunion",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Resident Evil Requiem",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Returnal",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Dead Cells",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Castlevania Anniversary Collection",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "LISA: The Definitive Edition",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Warhammer 40,000: Speed Freeks",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "The Ouroboros King",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Don't Starve Together",
-      "date": "2026-06-12"
-    },
-    {
-      "name": "Sifu",
-      "date": "2026-06-12"
-    },
-    {
       "name": "Gravity Circuit",
       "date": "2026-06-13"
     },
@@ -1105,6 +1017,10 @@
       "name": "Devil May Cry 5",
       "date": "2026-06-27",
       "sale_until": "2026-07-09"
+    },
+    {
+      "name": "Assassin's Creed Black Flag Resynced",
+      "date": "2026-06-27"
     }
   ]
 }
