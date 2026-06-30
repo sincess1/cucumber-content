@@ -6,30 +6,6 @@
       "free_until": "2026-07-01"
     },
     {
-      "name": "RoboCop: Rogue City",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Assassin's Creed Odyssey",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Assassin's Creed Valhalla",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Furi",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Nobody Saves the World",
-      "date": "2026-06-15"
-    },
-    {
-      "name": "Dead by Daylight Jason Voorhees",
-      "date": "2026-06-15"
-    },
-    {
       "name": "Split Fiction",
       "date": "2026-06-16"
     },
@@ -892,6 +868,16 @@
     {
       "name": "🔥 скидки 2026-06-30",
       "date": "2026-06-30"
+    },
+    {
+      "name": "River City Girls 2",
+      "date": "2026-06-30",
+      "free_until": "2026-07-09"
+    },
+    {
+      "name": "I Have No Mouth, and I Must Scream",
+      "date": "2026-06-30",
+      "free_until": "2026-07-09"
     }
   ]
 }
