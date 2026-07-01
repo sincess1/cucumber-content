@@ -907,6 +907,11 @@
       "name": "Blasphemous 2",
       "date": "2026-07-01",
       "sale_until": "2026-07-09"
+    },
+    {
+      "name": "Greenhouse: Schism",
+      "date": "2026-07-01",
+      "free_until": "2026-07-31"
     }
   ]
 }
