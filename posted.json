@@ -1155,6 +1155,11 @@
     {
       "name": "DOOM: The Dark Ages Revelations",
       "date": "2026-07-03"
+    },
+    {
+      "name": "Nexus: The Jupiter Incident",
+      "date": "2026-07-03",
+      "free_until": "2026-07-06"
     }
   ]
 }
