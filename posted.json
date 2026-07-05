@@ -1160,6 +1160,11 @@
       "name": "Nexus: The Jupiter Incident",
       "date": "2026-07-03",
       "free_until": "2026-07-06"
+    },
+    {
+      "name": "GigaBash",
+      "date": "2026-07-05",
+      "free_until": "2026-08-04"
     }
   ]
 }
