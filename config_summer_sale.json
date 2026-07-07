@@ -1,11 +1,15 @@
 {
   "rubric": "sale",
   "title": "ЛЕТНЯЯ РАСПРОДАЖА STEAM",
-  "subtitle": "Старт 25 июня · до 9 июля · до -90%",
+  "subtitle": "Последние дни · до 9 июля · до -90%",
   "items": [
-    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg", "tag": "25 июня"},
-    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg", "tag": "25 июня"},
-    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2668510/header.jpg", "tag": "25 июня"},
-    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg", "tag": "25 июня"}
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg", "tag": "-70%", "old": "$59.99", "new": "$17.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg", "tag": "-75%", "old": "$59.99", "new": "$14.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg", "tag": "-25%", "old": "$59.99", "new": "$44.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg", "tag": "-85%", "old": "$59.99", "new": "$8.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/1030300/header.jpg", "tag": "-25%", "old": "$19.99", "new": "$14.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg", "tag": "-90%", "old": "$39.99", "new": "$3.99"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2322010/header.jpg", "tag": "-33%", "old": "$59.99", "new": "$40.19"},
+    {"img": "https://cdn.akamai.steamstatic.com/steam/apps/2651280/header.jpg", "tag": "-33%", "old": "$59.99", "new": "$40.19"}
   ]
 }
