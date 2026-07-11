@@ -144,7 +144,7 @@ def main(cfg_path, out_path):
     rub = RUBRICS.get(cfg.get("rubric", ""))
     accent = rub["color"] if rub else ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
     items = cfg["items"]
-    footer = cfg.get("footer", "Сыграй в любую новинку бесплатно")
+    footer = cfg.get("footer", "2000+ игр Steam по подписке")
     pad, gap, row_gap = 40, 24, 22
     n = len(items)
     cols = 1 if n == 1 else 2
