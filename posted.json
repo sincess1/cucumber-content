@@ -1614,6 +1614,11 @@
    "name": "Darkwood",
    "date": "2026-07-11",
    "sale_until": "2026-07-24"
+  },
+  {
+   "name": "KeepUp Survival",
+   "date": "2026-07-12",
+   "free_until": "2026-07-19"
   }
  ]
 }
