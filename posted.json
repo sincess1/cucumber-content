@@ -1812,6 +1812,16 @@
     {
       "name": "GTA Online heist payout nerf",
       "date": "2026-07-16"
+    },
+    {
+      "name": "Echo Generation: Midnight Edition",
+      "date": "2026-07-16",
+      "free_until": "2026-07-23"
+    },
+    {
+      "name": "Luto",
+      "date": "2026-07-16",
+      "free_until": "2026-07-23"
     }
   ]
 }
