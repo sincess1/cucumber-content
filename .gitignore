@@ -5,3 +5,7 @@ config_*.json
 sm.jpg
 gta_news.jpg
 covers/
+.last_msgid
+.last_fileid
+caption.txt
+sendphoto_resp.json
