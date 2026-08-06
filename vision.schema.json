@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ok", "topic_match", "readable", "issues"],
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "topic_match": {
+      "type": "boolean"
+    },
+    "readable": {
+      "type": "boolean"
+    },
+    "issues": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "maxLength": 300
+      }
+    }
+  }
+}

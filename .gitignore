@@ -9,3 +9,4 @@ covers/
 .last_fileid
 caption.txt
 sendphoto_resp.json
+runtime_input.json
