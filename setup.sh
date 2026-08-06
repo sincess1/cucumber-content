@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -uo pipefail
+set -euo pipefail
 
-pip install -q -r requirements.txt
+python3 -m venv venv
+venv/bin/pip install -q -r requirements.txt
 
 if ! fc-list 2>/dev/null | grep -qiE 'dejavu|liberation'; then
   APT="apt-get"
@@ -10,4 +11,4 @@ if ! fc-list 2>/dev/null | grep -qiE 'dejavu|liberation'; then
     || echo "warn: шрифты не поставились, баннер уйдёт на дефолтный"
 fi
 
-python -c "from PIL import Image; print('pillow ok')"
+venv/bin/python -c "from PIL import Image; print('pillow ok')"

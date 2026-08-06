@@ -10,3 +10,5 @@ covers/
 caption.txt
 sendphoto_resp.json
 runtime_input.json
+__pycache__/
+venv/

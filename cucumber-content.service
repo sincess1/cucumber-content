@@ -1,0 +1,30 @@
+[Unit]
+Description=SteamGate content routine
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/cucumber-content
+EnvironmentFile=-/root/cucumber-content.env
+ExecStart=/srv/cucumber-content/venv/bin/python /srv/cucumber-content/routine.py
+Nice=10
+IOSchedulingClass=idle
+CPUQuota=60%
+MemoryHigh=1200M
+MemoryMax=1600M
+MemorySwapMax=512M
+TasksMax=128
+TimeoutStartSec=45min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/srv/cucumber-content /var/lib/cucumber-content /var/lib/cucumber-approve
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
