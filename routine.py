@@ -137,6 +137,7 @@ def run_checked(command, cwd=ROOT, timeout=120, env=None):
         command,
         cwd=cwd,
         env=env,
+        stdin=subprocess.DEVNULL,
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
