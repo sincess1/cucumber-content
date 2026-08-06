@@ -6,7 +6,8 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/srv/cucumber-content
-EnvironmentFile=-/root/cucumber-content.env
+Environment=CUCUMBER_CODEX_USER=cucumber-content
+Environment=CUCUMBER_CODEX_HOME=/var/lib/cucumber-content/model
 ExecStart=/srv/cucumber-content/venv/bin/python /srv/cucumber-content/routine.py
 Nice=10
 IOSchedulingClass=idle
