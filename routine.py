@@ -275,10 +275,8 @@ def validate_shape(draft):
         if set(source) != {"url", "fact"} or not source["url"].startswith("https://") or not source["fact"].strip():
             raise ValueError("неверный источник")
     for entry in draft["dedup_entries"]:
-        if not isinstance(entry, dict) or not {"name", "date"}.issubset(entry):
+        if not isinstance(entry, dict) or set(entry) != {"name", "date", "free_until", "sale_until"}:
             raise ValueError("неверная запись дедупа")
-        if set(entry) - {"name", "date", "free_until", "sale_until"}:
-            raise ValueError("лишнее поле в дедупе")
         if entry["date"] != draft["date"] or not entry["name"].strip():
             raise ValueError("неверная дата или имя в дедупе")
 
@@ -316,17 +314,17 @@ def validate_banner(banner):
     if not isinstance(banner, dict):
         raise ValueError("баннер отсутствует")
     allowed = {"rubric", "title", "subtitle", "brand", "items"}
-    if set(banner) - allowed or not {"rubric", "title", "items"}.issubset(banner):
+    if set(banner) != allowed:
         raise ValueError("неверные поля баннера")
     if banner["rubric"] not in {"freebie", "catalog", "sale", "news", "meme"}:
         raise ValueError("неверная рубрика баннера")
-    if EMOJI_RE.search(banner["title"] + banner.get("subtitle", "")):
+    if EMOJI_RE.search(banner["title"] + (banner["subtitle"] or "")):
         raise ValueError("эмодзи в тексте баннера запрещены")
     items = banner["items"]
     if not isinstance(items, list) or not 1 <= len(items) <= 8:
         raise ValueError("баннер должен содержать от 1 до 8 карточек")
     for item in items:
-        if set(item) - {"img", "tag", "old", "new"} or "img" not in item:
+        if set(item) != {"img", "tag", "old", "new"}:
             raise ValueError("неверная карточка баннера")
         parsed = urlparse(item["img"])
         if parsed.scheme != "https" or not parsed.netloc:
@@ -388,13 +386,13 @@ def validate_draft(draft):
     if draft["banner"]["rubric"] != expected_rubric:
         raise ValueError("рубрика баннера не соответствует тиру")
     if draft["tier"] == "freebie":
-        if any("free_until" not in entry for entry in draft["dedup_entries"]):
+        if any(not entry["free_until"] for entry in draft["dedup_entries"]):
             raise ValueError("у халявы нет free_until")
         if any(parse_date(entry["free_until"]) is None or parse_date(entry["free_until"]) < dt.date.fromisoformat(draft["date"])
                for entry in draft["dedup_entries"]):
             raise ValueError("у халявы неверный free_until")
     if draft["tier"] == "sale":
-        if any("sale_until" not in entry for entry in draft["dedup_entries"] if not entry["name"].startswith("🔥 скидки ")):
+        if any(not entry["sale_until"] for entry in draft["dedup_entries"] if not entry["name"].startswith("🔥 скидки ")):
             raise ValueError("у скидки нет sale_until")
         if any(parse_date(entry["sale_until"]) is None or parse_date(entry["sale_until"]) < dt.date.fromisoformat(draft["date"])
                for entry in draft["dedup_entries"] if not entry["name"].startswith("🔥 скидки ")):
@@ -472,7 +470,8 @@ def persist_and_push(draft):
     if not isinstance(current, list):
         raise ValueError("posted.json имеет неверный формат")
     if draft["status"] == "post":
-        posted_doc["posted"] = merge_posted(current, draft["dedup_entries"], today)
+        entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
+        posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
     decision = f"{draft['date']} {draft['moscow_time']} | v96 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)

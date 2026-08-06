@@ -21,9 +21,16 @@ def draft(tier="news", caption=None):
         "banner": {
             "rubric": "news",
             "title": "ИГРОВАЯ НОВОСТЬ",
-            "items": [{"img": "https://example.com/banner.jpg"}],
+            "subtitle": None,
+            "brand": "steamgate",
+            "items": [{"img": "https://example.com/banner.jpg", "tag": None, "old": None, "new": None}],
         },
-        "dedup_entries": [{"name": "Проверяемая игровая новость", "date": today}],
+        "dedup_entries": [{
+            "name": "Проверяемая игровая новость",
+            "date": today,
+            "free_until": None,
+            "sale_until": None,
+        }],
         "decision_log": "тиры 1–5 пусты | взял тир 6",
         "caption_log": f"{today} | А | Проверяемая игровая новость | байт: читаю",
         "sources": [{"url": "https://example.com/news", "fact": "Подтверждение новости"}],
@@ -50,7 +57,10 @@ class RoutineTests(unittest.TestCase):
             '<blockquote>🔥 — да\n💩 — нет</blockquote>\n#steam #игры #скидки #pc #gaming'
         ))
         value["dedup_entries"] = [{
-            "name": "Игра", "date": value["date"], "sale_until": (dt.date.today() + dt.timedelta(days=5)).isoformat(),
+            "name": "Игра",
+            "date": value["date"],
+            "free_until": None,
+            "sale_until": (dt.date.today() + dt.timedelta(days=5)).isoformat(),
         }]
         with self.assertRaisesRegex(ValueError, "цена"):
             routine.validate_draft(value)
