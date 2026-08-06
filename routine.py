@@ -214,7 +214,7 @@ def codex_command(prompt, schema, output, effort, image=None, search=False):
         "-C", str(ROOT),
     ])
     if image:
-        command.extend(["-i", str(image)])
+        command.append(f"--image={image}")
     command.append(prompt)
     user = os.getenv("CUCUMBER_CODEX_USER", "")
     if not user:
