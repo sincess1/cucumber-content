@@ -42,6 +42,51 @@ def draft(tier="news", caption=None):
     }
 
 
+def runtime(new_games=None, freebies=None):
+    today = routine.moscow_now().date()
+    games = []
+    for title, created in new_games or []:
+        games.append({"title": title, "createdAt": created})
+    deals = []
+    for title in freebies or []:
+        deals.append({
+            "title": title,
+            "type": "game",
+            "deal": {
+                "shop": {"name": "Steam"},
+                "price": {"amount": 0},
+                "regular": {"amount": 19.99},
+                "cut": 100,
+                "expiry": (today + dt.timedelta(days=2)).isoformat() + "T19:00:00+03:00",
+            },
+        })
+    return {
+        "today": today.isoformat(),
+        "new_games": {"ok": True, "data": games},
+        "gamerpower": {"ok": True, "data": []},
+        "itad_cut": {"ok": True, "data": {"list": deals}},
+    }
+
+
+def catalog_draft(titles):
+    value = draft()
+    value["tier"] = "catalog"
+    value["banner"]["rubric"] = "catalog"
+    value["dedup_entries"] = [{
+        "name": f"🆕 {title}",
+        "date": value["date"],
+        "free_until": None,
+        "sale_until": None,
+    } for title in titles]
+    value["dedup_entries"].append({
+        "name": f"🆕 завоз {value['date']}",
+        "date": value["date"],
+        "free_until": None,
+        "sale_until": None,
+    })
+    return value
+
+
 class RoutineTests(unittest.TestCase):
     def test_valid_news(self):
         routine.validate_draft(draft())
@@ -90,6 +135,55 @@ class RoutineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "лимит пяти"):
             routine.validate_history(value, [], lines)
 
+    def test_catalog_bypasses_daily_post_limit(self):
+        value = catalog_draft(["Новая игра"])
+        lines = [f"{value['date']} | А | пост {index}" for index in range(5)]
+        routine.validate_history(value, [], lines)
+
+    def test_catalog_daily_marker_does_not_block_late_game(self):
+        value = catalog_draft(["Поздняя игра"])
+        posted = [{"name": f"🆕 завоз {value['date']}", "date": value["date"]}]
+        routine.validate_history(value, posted, [])
+
+    def test_pending_catalog_blocks_lower_tier_even_after_daily_marker(self):
+        today = routine.moscow_now().date().isoformat()
+        value = draft()
+        posted = [{"name": f"🆕 завоз {today}", "date": today}]
+        data = runtime([("ReStory", today + "T08:38:36Z")])
+        with self.assertRaisesRegex(ValueError, "тир 2 обязателен"):
+            routine.validate_priority(value, data, posted)
+
+    def test_catalog_must_include_every_pending_game(self):
+        today = routine.moscow_now().date().isoformat()
+        data = runtime([
+            ("ReStory", today + "T08:38:36Z"),
+            ("Bills Must Be Paid", today + "T07:00:00Z"),
+        ])
+        value = catalog_draft(["ReStory"])
+        with self.assertRaisesRegex(ValueError, "Bills Must Be Paid"):
+            routine.validate_priority(value, data, [])
+
+    def test_previous_day_unpublished_catalog_game_stays_pending(self):
+        yesterday = routine.moscow_now().date() - dt.timedelta(days=1)
+        data = runtime([("Поздняя игра", yesterday.isoformat() + "T22:30:00Z")])
+        self.assertEqual(routine.pending_catalog_titles(data, []), ["Поздняя игра"])
+
+    def test_freebie_has_priority_over_catalog(self):
+        today = routine.moscow_now().date().isoformat()
+        data = runtime([("Новая игра", today + "T08:00:00Z")], ["Moonlighter"])
+        value = catalog_draft(["Новая игра"])
+        with self.assertRaisesRegex(ValueError, "тир 1 обязателен"):
+            routine.validate_priority(value, data, [])
+
+    def test_active_posted_freebie_is_not_pending(self):
+        data = runtime(freebies=["Moonlighter"])
+        posted = [{
+            "name": "Moonlighter",
+            "date": routine.moscow_now().date().isoformat(),
+            "free_until": (routine.moscow_now().date() + dt.timedelta(days=1)).isoformat(),
+        }]
+        self.assertEqual(routine.pending_freebies(data, posted), [])
+
     def test_model_replaces_stale_draft_atomically(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "draft.json"
@@ -118,7 +212,7 @@ class RoutineTests(unittest.TestCase):
                 routine.write_json(path, value)
 
             with patch.object(routine, "run_model", side_effect=complete_model):
-                result = routine.prepare_model_draft(output, [], [])
+                result = routine.prepare_model_draft(output, runtime(), [], [])
 
             self.assertEqual(result["date"], routine.moscow_now().date().isoformat())
             self.assertIn("дата черновика", feedback[1])

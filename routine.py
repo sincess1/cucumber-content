@@ -196,6 +196,114 @@ def collect_runtime(env):
     return runtime
 
 
+def response_items(response):
+    if not isinstance(response, dict) or not response.get("ok"):
+        return []
+    data = response.get("data")
+    if isinstance(data, list):
+        return data
+    if isinstance(data, dict):
+        for key in ("list", "games", "items", "data"):
+            if isinstance(data.get(key), list):
+                return data[key]
+    return []
+
+
+def parse_timestamp(value):
+    try:
+        return dt.datetime.fromisoformat(str(value).replace("Z", "+00:00")).astimezone(MOSCOW)
+    except Exception:
+        return None
+
+
+def pending_catalog_titles(runtime, posted):
+    today = parse_date(runtime.get("today", ""))
+    if today is None:
+        return []
+    cutoff = today - dt.timedelta(days=2)
+    posted_names = {
+        old["name"].casefold()
+        for old in posted
+        if isinstance(old, dict) and isinstance(old.get("name"), str)
+    }
+    titles = []
+    seen = set()
+    for item in response_items(runtime.get("new_games")):
+        if not isinstance(item, dict):
+            continue
+        title = str(item.get("title") or item.get("name") or "").strip()
+        created = parse_timestamp(item.get("createdAt") or item.get("created_at"))
+        key = f"🆕 {title}".casefold()
+        if not title or created is None or not cutoff <= created.date() <= today:
+            continue
+        if key in posted_names or key in seen:
+            continue
+        seen.add(key)
+        titles.append(title)
+    return titles
+
+
+def normalize_giveaway_title(value):
+    title = re.sub(r"\s*\(Steam\)\s*Giveaway$", "", str(value), flags=re.I)
+    title = re.sub(r"\s+Steam\s+Giveaway$", "", title, flags=re.I)
+    return title.strip()
+
+
+def pending_freebies(runtime, posted):
+    today = parse_date(runtime.get("today", ""))
+    if today is None:
+        return []
+    active = {
+        old["name"].casefold()
+        for old in posted
+        if isinstance(old, dict)
+        and isinstance(old.get("name"), str)
+        and (parse_date(old.get("free_until", "")) or dt.date.min) >= today
+    }
+    candidates = {}
+
+    def add(title, until):
+        name = normalize_giveaway_title(title)
+        expiry = parse_date(until) if isinstance(until, str) else until
+        if name and expiry and expiry >= today and name.casefold() not in active:
+            candidates.setdefault(name.casefold(), {"name": name, "free_until": expiry.isoformat()})
+
+    for item in response_items(runtime.get("itad_cut")):
+        if not isinstance(item, dict) or str(item.get("type", "")).casefold() != "game":
+            continue
+        deal = item.get("deal") if isinstance(item.get("deal"), dict) else {}
+        shop = deal.get("shop") if isinstance(deal.get("shop"), dict) else {}
+        price = deal.get("price") if isinstance(deal.get("price"), dict) else {}
+        regular = deal.get("regular") if isinstance(deal.get("regular"), dict) else {}
+        expiry = parse_timestamp(deal.get("expiry"))
+        if (
+            str(shop.get("name", "")).casefold() == "steam"
+            and deal.get("cut") == 100
+            and price.get("amount") == 0
+            and float(regular.get("amount") or 0) > 0
+            and expiry is not None
+        ):
+            add(item.get("title", ""), expiry.date())
+
+    for item in response_items(runtime.get("gamerpower")):
+        if not isinstance(item, dict):
+            continue
+        title = str(item.get("title", ""))
+        details = " ".join(str(item.get(key, "")) for key in ("title", "description", "instructions")).casefold()
+        worth = re.search(r"\d+(?:\.\d+)?", str(item.get("worth", "")))
+        if (
+            str(item.get("status", "")).casefold() == "active"
+            and str(item.get("type", "")).casefold() == "game"
+            and "steam" in str(item.get("platforms", "")).casefold()
+            and worth
+            and float(worth.group()) > 0
+            and "key giveaway" not in title.casefold()
+            and not ("requires" in details and ("points" in details or " arp" in details))
+        ):
+            add(title, str(item.get("end_date", ""))[:10])
+    return list(candidates.values())
+
+
 def codex_command(prompt, schema, output, effort, image=None, search=False):
     binary = os.getenv("CUCUMBER_CODEX_BIN", "/usr/bin/codex")
     model = os.getenv("CUCUMBER_CODEX_MODEL", "gpt-5.6-sol")
@@ -350,7 +458,7 @@ def validate_history(draft, posted, caption_lines):
         line.startswith(draft["date"] + " ") or line.startswith(short_date + " ")
         for line in caption_lines
     )
-    if post_count >= 5:
+    if post_count >= 5 and draft["tier"] not in {"freebie", "catalog"}:
         raise ValueError("достигнут жёсткий лимит пяти постов за московские сутки")
     by_name = {}
     for old in posted:
@@ -358,6 +466,8 @@ def validate_history(draft, posted, caption_lines):
             by_name.setdefault(old["name"].casefold(), []).append(old)
     for entry in draft["dedup_entries"]:
         name = entry["name"].casefold()
+        if draft["tier"] == "catalog" and entry["name"] == f"🆕 завоз {draft['date']}":
+            continue
         for old in by_name.get(name, []):
             old_date = parse_date(old.get("date", ""))
             active_free = parse_date(old.get("free_until", ""))
@@ -369,6 +479,32 @@ def validate_history(draft, posted, caption_lines):
             window = 30 if draft["tier"] == "sale" else 7
             if old_date and old_date >= today - dt.timedelta(days=window):
                 raise ValueError(f"тема уже была в дедупе: {entry['name']}")
+
+
+def validate_priority(draft, runtime, posted):
+    freebies = pending_freebies(runtime, posted)[:4]
+    catalog = pending_catalog_titles(runtime, posted)
+    tier = draft["tier"]
+    names = {
+        entry["name"].casefold()
+        for entry in draft.get("dedup_entries", [])
+        if isinstance(entry, dict) and isinstance(entry.get("name"), str)
+    }
+    if freebies:
+        if tier != "freebie":
+            raise ValueError("есть новая халява — тир 1 обязателен: " + ", ".join(item["name"] for item in freebies))
+        missing = [item["name"] for item in freebies if item["name"].casefold() not in names]
+        if missing:
+            raise ValueError("в посте о халяве пропущены: " + ", ".join(missing))
+        return
+    if catalog and tier not in {"freebie", "catalog"}:
+        raise ValueError("есть неопубликованные игры SteamGate — тир 2 обязателен: " + ", ".join(catalog))
+    if tier == "catalog":
+        missing = [title for title in catalog if f"🆕 {title}".casefold() not in names]
+        if not catalog:
+            raise ValueError("для поста о пополнении нет неопубликованных игр")
+        if missing:
+            raise ValueError("в посте о пополнении пропущены: " + ", ".join(missing))
 
 
 def validate_draft(draft):
@@ -413,7 +549,7 @@ def validate_draft(draft):
             raise ValueError("у завоза нет дневного замка")
 
 
-def prepare_model_draft(draft_path, posted, captions, attempts=2):
+def prepare_model_draft(draft_path, runtime, posted, captions, attempts=2):
     feedback = None
     for attempt in range(attempts):
         run_model(draft_path, feedback)
@@ -421,6 +557,7 @@ def prepare_model_draft(draft_path, posted, captions, attempts=2):
             draft = load_json(draft_path)
             validate_draft(draft)
             validate_history(draft, posted, captions)
+            validate_priority(draft, runtime, posted)
             return draft
         except (OSError, json.JSONDecodeError, TypeError, KeyError, ValueError) as error:
             if attempt + 1 == attempts:
@@ -506,7 +643,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v96 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v97 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)
@@ -655,8 +792,9 @@ def main():
             write_json(draft_path, draft)
             validate_draft(draft)
             validate_history(draft, posted, captions)
+            validate_priority(draft, runtime, posted)
         else:
-            draft = prepare_model_draft(draft_path, posted, captions)
+            draft = prepare_model_draft(draft_path, runtime, posted, captions)
         banner = None
         if draft["status"] == "post":
             banner = render_banner(draft, args.state_dir)
