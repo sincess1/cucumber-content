@@ -1,9 +1,8 @@
 [Unit]
-Description=Run SteamGate content routine five times per Moscow day
+Description=Run SteamGate content routine every three hours
 
 [Timer]
-OnCalendar=*-*-* 09,12,15,18,21:07:00 Europe/Moscow
-RandomizedDelaySec=10m
+OnCalendar=*-*-* 00/3:07:00 Europe/Moscow
 Persistent=true
 Unit=cucumber-content.service
 
