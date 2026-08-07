@@ -230,14 +230,24 @@ def codex_command(prompt, schema, output, effort, image=None, search=False):
     return ["runuser", "-u", user, "--", *clean_env, "nice", "-n", "10", "ionice", "-c2", "-n7", *command], os.environ.copy()
 
 
-def run_model(output):
+def run_model(output, feedback=None):
     prompt = (
         "Выполни один запуск подготовки контента. Полностью прочитай AGENT.md, затем обязательные "
         "runtime_input.json, posted.json и последние строки журналов. Используй веб-поиск для свежих "
         "новостей и событий. Верни только JSON по переданной схеме."
     )
-    command, env = codex_command(prompt, ROOT / "draft.schema.json", output, "high", search=True)
+    if feedback:
+        prompt += (
+            f" Предыдущий результат отклонён внешним валидатором: {feedback[:500]}. "
+            "Подготовь результат заново по текущим данным, не повторяя эту ошибку."
+        )
+    candidate = output.with_suffix(output.suffix + ".next")
+    candidate.unlink(missing_ok=True)
+    command, env = codex_command(prompt, ROOT / "draft.schema.json", candidate, "high", search=True)
     run_checked(command, timeout=int(os.getenv("CUCUMBER_MODEL_TIMEOUT", "2100")), env=env)
+    if not candidate.is_file():
+        raise RuntimeError("модель не создала новый черновик")
+    candidate.replace(output)
 
 
 def validate_shape(draft):
@@ -401,6 +411,22 @@ def validate_draft(draft):
         lock = f"🆕 завоз {draft['date']}"
         if not any(entry["name"] == lock for entry in draft["dedup_entries"]):
             raise ValueError("у завоза нет дневного замка")
+
+
+def prepare_model_draft(draft_path, posted, captions, attempts=2):
+    feedback = None
+    for attempt in range(attempts):
+        run_model(draft_path, feedback)
+        try:
+            draft = load_json(draft_path)
+            validate_draft(draft)
+            validate_history(draft, posted, captions)
+            return draft
+        except (OSError, json.JSONDecodeError, TypeError, KeyError, ValueError) as error:
+            if attempt + 1 == attempts:
+                raise
+            feedback = str(error)
+    raise RuntimeError("не удалось подготовить черновик")
 
 
 def render_banner(draft, state_dir):
@@ -615,16 +641,15 @@ def main():
         runtime = collect_runtime(env)
         write_json(ROOT / "runtime_input.json", runtime)
         draft_path = args.state_dir / "draft.json"
+        posted = load_json(ROOT / "posted.json").get("posted", [])
+        captions = (ROOT / "captions.log").read_text(encoding="utf-8").splitlines()
         if args.draft:
             draft = load_json(args.draft)
             write_json(draft_path, draft)
+            validate_draft(draft)
+            validate_history(draft, posted, captions)
         else:
-            run_model(draft_path)
-            draft = load_json(draft_path)
-        validate_draft(draft)
-        posted = load_json(ROOT / "posted.json").get("posted", [])
-        captions = (ROOT / "captions.log").read_text(encoding="utf-8").splitlines()
-        validate_history(draft, posted, captions)
+            draft = prepare_model_draft(draft_path, posted, captions)
         banner = None
         if draft["status"] == "post":
             banner = render_banner(draft, args.state_dir)

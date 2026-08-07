@@ -1,5 +1,8 @@
 import datetime as dt
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
 import routine
 from schedule_main import premiumify_html
@@ -86,6 +89,39 @@ class RoutineTests(unittest.TestCase):
         lines = [f"{value['date']} | А | пост {index}" for index in range(5)]
         with self.assertRaisesRegex(ValueError, "лимит пяти"):
             routine.validate_history(value, [], lines)
+
+    def test_model_replaces_stale_draft_atomically(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "draft.json"
+            output.write_text('{"stale": true}', encoding="utf-8")
+            candidate = output.with_suffix(".json.next")
+
+            def complete_model(*args, **kwargs):
+                candidate.write_text('{"fresh": true}', encoding="utf-8")
+
+            with patch.object(routine, "run_checked", side_effect=complete_model):
+                routine.run_model(output)
+
+            self.assertEqual(routine.load_json(output), {"fresh": True})
+            self.assertFalse(candidate.exists())
+
+    def test_retries_rejected_model_draft_with_feedback(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "draft.json"
+            feedback = []
+
+            def complete_model(path, error=None):
+                feedback.append(error)
+                value = draft()
+                if error is None:
+                    value["date"] = "2020-01-01"
+                routine.write_json(path, value)
+
+            with patch.object(routine, "run_model", side_effect=complete_model):
+                result = routine.prepare_model_draft(output, [], [])
+
+            self.assertEqual(result["date"], routine.moscow_now().date().isoformat())
+            self.assertIn("дата черновика", feedback[1])
 
     def test_premiumifies_only_plain_text(self):
         source = '🟢 <b>Игра</b> <tg-emoji emoji-id="1">🔥</tg-emoji> 🔥'
