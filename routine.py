@@ -425,7 +425,7 @@ def validate_caption(draft):
         negative = reaction_lines[1].casefold()
         natural_negative = (
             "не моё", "не мое", "не люблю", "уже ", "не играю", "не интерес",
-            "не зайд", "не для меня", "не буду",
+            "не зайд", "не зацеп", "ничего не", "не для меня", "не буду",
         )
         if not any(phrase in negative for phrase in natural_negative):
             raise ValueError("отрицательная реакция должна выражать простую человеческую причину")
@@ -673,7 +673,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v100 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v101 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)

@@ -164,6 +164,16 @@ class RoutineTests(unittest.TestCase):
         ))
         routine.validate_caption(value)
 
+    def test_accepts_natural_nothing_caught_me_reaction(self):
+        value = draft("catalog", (
+            '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
+            'OCTOPATH TRAVELER 0 и Sephiria уже в каталоге.\n\n'
+            '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
+            '<blockquote>🔥 — начинаю с Octopath\n💩 — ничего не зацепило</blockquote>\n\n'
+            '#SteamGate #новинки #Steam #игры #PCGaming'
+        ))
+        routine.validate_caption(value)
+
     def test_rejects_repeated_catalog_wording(self):
         value = draft("catalog", (
             '🆕 <b>Завоз в каталог — 2 игры</b>\n\n'
