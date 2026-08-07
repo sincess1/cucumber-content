@@ -154,6 +154,16 @@ class RoutineTests(unittest.TestCase):
         ))
         routine.validate_caption(value)
 
+    def test_accepts_compact_catalog_list(self):
+        value = draft("catalog", (
+            '🆕 <b>В SteamGate добавили 3 игры</b>\n\n'
+            '<blockquote expandable>OCTOPATH TRAVELER 0\nMorbid Metal\nSephiria</blockquote>\n\n'
+            '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
+            '<blockquote>🔥 — начинаю с Octopath\n💩 — не моё</blockquote>\n\n'
+            '#SteamGate #новинки #Steam #игры #PCGaming'
+        ))
+        routine.validate_caption(value)
+
     def test_rejects_repeated_catalog_wording(self):
         value = draft("catalog", (
             '🆕 <b>Завоз в каталог — 2 игры</b>\n\n'
