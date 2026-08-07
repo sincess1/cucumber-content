@@ -113,6 +113,56 @@ class RoutineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "цена"):
             routine.validate_draft(value)
 
+    def test_rejects_freebie_marker_explanation(self):
+        value = draft("freebie", (
+            '🎁 <b>Moonlighter бесплатно</b>\n'
+            '<blockquote>🎁 <a href="https://example.com/game"><b>Moonlighter</b></a> бесплатно</blockquote>\n'
+            'Забрать можно до 9 августа.\n🎁 — забрать и оставить навсегда\n'
+            '<blockquote>🔥 — забираю\n💩 — не люблю пиксели</blockquote>\n'
+            '#халява #steam #игры #рогалик #rpg'
+        ))
+        with self.assertRaisesRegex(ValueError, "не нужна расшифровка"):
+            routine.validate_caption(value)
+
+    def test_rejects_forced_negative_reaction(self):
+        value = draft("catalog", (
+            '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
+            'Marvel Tōkon и The Jackbox Party Pack 5 уже в каталоге.\n\n'
+            '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
+            '<blockquote>🔥 — собираю команду\n💩 — сегодня без викторин</blockquote>\n\n'
+            '#SteamGate #новинки #Steam #MarvelTokon #Jackbox'
+        ))
+        with self.assertRaisesRegex(ValueError, "человеческую причину"):
+            routine.validate_caption(value)
+
+    def test_accepts_human_catalog_copy(self):
+        value = draft("catalog", (
+            '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
+            'Marvel Tōkon и The Jackbox Party Pack 5 уже в каталоге.\n\n'
+            '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
+            '<blockquote>🔥 — собираю команду\n💩 — не люблю викторины</blockquote>\n\n'
+            '#SteamGate #новинки #Steam #MarvelTokon #Jackbox'
+        ))
+        routine.validate_caption(value)
+
+    def test_rejects_repeated_catalog_wording(self):
+        value = draft("catalog", (
+            '🆕 <b>Завоз в каталог — 2 игры</b>\n\n'
+            'Свежий завоз уже доступен.\n\n'
+            '<a href="https://example.com/catalog">Смотреть завоз</a>\n\n'
+            '<blockquote>🔥 — забираю\n💩 — не моё</blockquote>\n\n'
+            '#SteamGate #завоз #Steam #игры #новинки'
+        ))
+        with self.assertRaisesRegex(ValueError, "повторяется"):
+            routine.validate_caption(value)
+
+    def test_rejects_catalog_banner_title_that_repeats_rubric(self):
+        banner = draft()["banner"]
+        banner["rubric"] = "catalog"
+        banner["title"] = "ЗАВОЗ В КАТАЛОГ STEAMGATE"
+        with self.assertRaisesRegex(ValueError, "системную рубрику"):
+            routine.validate_banner(banner)
+
     def test_merge_keeps_active_and_recent(self):
         today = dt.date(2026, 8, 6)
         existing = [

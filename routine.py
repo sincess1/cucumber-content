@@ -410,6 +410,21 @@ def validate_caption(draft):
         raise ValueError("в посте нет ссылки")
     if not any("🔥" in quote and "💩" in quote for quote in parser.blockquotes):
         raise ValueError("нет единого блока реакций 🔥/💩")
+    reaction_lines = [line.strip() for line in parser.blockquotes[-1].splitlines() if line.strip()]
+    if (
+        len(reaction_lines) != 2
+        or not re.fullmatch(r"🔥\s*—\s*.+", reaction_lines[0])
+        or not re.fullmatch(r"💩\s*—\s*.+", reaction_lines[1])
+    ):
+        raise ValueError("реакции должны состоять из двух коротких строк 🔥/💩")
+    if draft["tier"] in {"freebie", "catalog"}:
+        negative = reaction_lines[1].casefold()
+        natural_negative = (
+            "не моё", "не мое", "не люблю", "уже ", "не играю", "не интерес",
+            "не зайд", "не для меня", "не буду",
+        )
+        if not any(phrase in negative for phrase in natural_negative):
+            raise ValueError("отрицательная реакция должна выражать простую человеческую причину")
     lines = [line.strip() for line in visible.splitlines() if line.strip()]
     if not lines or not HASHTAG_RE.search(lines[-1]) or not lines[-1].startswith("#"):
         raise ValueError("хэштеги должны быть последней строкой")
@@ -418,6 +433,12 @@ def validate_caption(draft):
         raise ValueError("в последней строке должно быть от 5 до 7 хэштегов")
     if draft["tier"] in {"freebie", "sale"} and MONEY_RE.search(visible):
         raise ValueError("в подписи халявы или скидок найдена цена")
+    if draft["tier"] == "freebie" and re.search(r"(?mi)^\s*🎁\s*[—–-]\s*", visible):
+        raise ValueError("в посте о халяве не нужна расшифровка очевидного маркера 🎁")
+    if draft["tier"] == "catalog":
+        content = "\n".join(lines[:-1])
+        if len(re.findall(r"\bзавоз\w*", content, re.I)) > 1:
+            raise ValueError("слово «завоз» повторяется в подписи")
     if draft["tier"] in {"freebie", "sale"}:
         if len(parser.blockquotes) != 2:
             raise ValueError("в дайджесте должно быть два blockquote")
@@ -438,6 +459,8 @@ def validate_banner(banner):
         raise ValueError("неверная рубрика баннера")
     if EMOJI_RE.search(banner["title"] + (banner["subtitle"] or "")):
         raise ValueError("эмодзи в тексте баннера запрещены")
+    if banner["rubric"] == "catalog" and re.search(r"\bзавоз\w*", banner["title"], re.I):
+        raise ValueError("заголовок баннера не должен повторять системную рубрику «ЗАВОЗ»")
     items = banner["items"]
     if not isinstance(items, list) or not 1 <= len(items) <= 8:
         raise ValueError("баннер должен содержать от 1 до 8 карточек")
@@ -643,7 +666,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v97 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v98 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)
