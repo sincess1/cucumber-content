@@ -449,10 +449,17 @@ def run_vision(draft, banner, output):
         f"Проверь баннер перед публикацией. Тема: {draft['topic']}. "
         "Убедись, что обложки и заголовок относятся к теме, текст полностью читается, "
         "нет обрезания, наложений, квадратов вместо символов и явно неверных изображений. "
+        "Карточки — выборка максимум из восьми главных игр: если в теме или подписи игр больше, "
+        "баннер не обязан показывать каждую из них, и это само по себе не является ошибкой. "
         "Верни только JSON по схеме."
     )
-    command, env = codex_command(prompt, ROOT / "vision.schema.json", output, "low", image=banner)
+    candidate = output.with_suffix(output.suffix + ".next")
+    candidate.unlink(missing_ok=True)
+    command, env = codex_command(prompt, ROOT / "vision.schema.json", candidate, "low", image=banner)
     run_checked(command, timeout=int(os.getenv("CUCUMBER_VISION_TIMEOUT", "480")), env=env)
+    if not candidate.is_file():
+        raise RuntimeError("визуальная модель не создала результат проверки")
+    candidate.replace(output)
     result = load_json(output)
     if set(result) != {"ok", "topic_match", "readable", "issues"}:
         raise ValueError("неверный ответ проверки баннера")

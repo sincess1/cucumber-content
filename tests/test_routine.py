@@ -123,6 +123,26 @@ class RoutineTests(unittest.TestCase):
             self.assertEqual(result["date"], routine.moscow_now().date().isoformat())
             self.assertIn("дата черновика", feedback[1])
 
+    def test_vision_replaces_stale_result_atomically(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "vision.json"
+            output.write_text('{"ok": false}', encoding="utf-8")
+            candidate = output.with_suffix(".json.next")
+
+            def complete_vision(*args, **kwargs):
+                routine.write_json(candidate, {
+                    "ok": True,
+                    "topic_match": True,
+                    "readable": True,
+                    "issues": [],
+                })
+
+            with patch.object(routine, "run_checked", side_effect=complete_vision):
+                routine.run_vision(draft(), Path(directory) / "banner.jpg", output)
+
+            self.assertTrue(routine.load_json(output)["ok"])
+            self.assertFalse(candidate.exists())
+
     def test_premiumifies_only_plain_text(self):
         source = '🟢 <b>Игра</b> <tg-emoji emoji-id="1">🔥</tg-emoji> 🔥'
         result = premiumify_html(source)
