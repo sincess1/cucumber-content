@@ -88,6 +88,15 @@ def catalog_draft(titles):
 
 
 class RoutineTests(unittest.TestCase):
+    def test_runtime_fetches_seven_days_of_catalog(self):
+        with patch.object(routine, "fetch_json", return_value={"ok": True, "data": []}) as fetch:
+            routine.collect_runtime({})
+
+        fetch.assert_any_call(
+            "https://steamgate.online/api/integrations/new-games",
+            {"days": 7},
+        )
+
     def test_valid_news(self):
         routine.validate_draft(draft())
 
@@ -217,6 +226,11 @@ class RoutineTests(unittest.TestCase):
         yesterday = routine.moscow_now().date() - dt.timedelta(days=1)
         data = runtime([("Поздняя игра", yesterday.isoformat() + "T22:30:00Z")])
         self.assertEqual(routine.pending_catalog_titles(data, []), ["Поздняя игра"])
+
+    def test_six_day_old_unpublished_catalog_game_stays_pending(self):
+        oldest = routine.moscow_now().date() - dt.timedelta(days=6)
+        data = runtime([("Пропущенная игра", oldest.isoformat() + "T12:00:00Z")])
+        self.assertEqual(routine.pending_catalog_titles(data, []), ["Пропущенная игра"])
 
     def test_freebie_has_priority_over_catalog(self):
         today = routine.moscow_now().date().isoformat()

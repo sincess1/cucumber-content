@@ -21,6 +21,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent
 MOSCOW = dt.timezone(dt.timedelta(hours=3))
+CATALOG_LOOKBACK_DAYS = 7
 ALLOWED_TAGS = {
     "a", "b", "blockquote", "code", "del", "em", "i", "ins", "pre",
     "s", "span", "strike", "strong", "tg-emoji", "tg-spoiler", "u",
@@ -178,7 +179,10 @@ def collect_runtime(env):
         "today": now.date().isoformat(),
         "moscow_time": now.strftime("%H:%M"),
         "generated_at": now.isoformat(),
-        "new_games": fetch_json("https://steamgate.online/api/integrations/new-games", {"days": 2}),
+        "new_games": fetch_json(
+            "https://steamgate.online/api/integrations/new-games",
+            {"days": CATALOG_LOOKBACK_DAYS},
+        ),
         "gamerpower": fetch_json(
             "https://www.gamerpower.com/api/giveaways",
             {"platform": "steam", "type": "game", "sort-by": "value"},
@@ -220,7 +224,7 @@ def pending_catalog_titles(runtime, posted):
     today = parse_date(runtime.get("today", ""))
     if today is None:
         return []
-    cutoff = today - dt.timedelta(days=2)
+    cutoff = today - dt.timedelta(days=CATALOG_LOOKBACK_DAYS - 1)
     posted_names = {
         old["name"].casefold()
         for old in posted
@@ -666,7 +670,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v98 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v99 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)
