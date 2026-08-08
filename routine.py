@@ -37,7 +37,9 @@ class CaptionParser(HTMLParser):
         self.stack = []
         self.text = []
         self.links = []
+        self.anchors = []
         self.blockquotes = []
+        self.current_anchor = None
         self.current_quote = None
 
     def handle_starttag(self, tag, attrs):
@@ -48,6 +50,7 @@ class CaptionParser(HTMLParser):
             if not href.startswith("https://"):
                 raise ValueError("ссылка в подписи должна начинаться с https://")
             self.links.append(href)
+            self.current_anchor = {"href": href, "text": []}
         self.stack.append(tag)
         if tag == "blockquote":
             if self.current_quote is not None:
@@ -58,12 +61,17 @@ class CaptionParser(HTMLParser):
         if not self.stack or self.stack[-1] != tag:
             raise ValueError(f"несбалансированный HTML-тег: {tag}")
         self.stack.pop()
+        if tag == "a":
+            self.anchors.append((self.current_anchor["href"], "".join(self.current_anchor["text"]).strip()))
+            self.current_anchor = None
         if tag == "blockquote":
             self.blockquotes.append("".join(self.current_quote or []))
             self.current_quote = None
 
     def handle_data(self, data):
         self.text.append(data)
+        if self.current_anchor is not None:
+            self.current_anchor["text"].append(data)
         if self.current_quote is not None:
             self.current_quote.append(data)
 
@@ -429,6 +437,13 @@ def validate_caption(draft):
         )
         if not any(phrase in negative for phrase in natural_negative):
             raise ValueError("отрицательная реакция должна выражать простую человеческую причину")
+        positive = reaction_lines[0].casefold()
+        natural_positive = (
+            "имба", "хочу", "беру", "забира", "попроб", "зацен", "надо",
+            "интерес", "нрав", "в спис", "уже игра",
+        )
+        if not any(phrase in positive for phrase in natural_positive):
+            raise ValueError("положительная реакция должна быть короткой и прямой, без ролевого каламбура")
     lines = [line.strip() for line in visible.splitlines() if line.strip()]
     if not lines or not HASHTAG_RE.search(lines[-1]) or not lines[-1].startswith("#"):
         raise ValueError("хэштеги должны быть последней строкой")
@@ -443,6 +458,37 @@ def validate_caption(draft):
         content = "\n".join(lines[:-1])
         if len(re.findall(r"\bзавоз\w*", content, re.I)) > 1:
             raise ValueError("слово «завоз» повторяется в подписи")
+        raw_lines = caption.splitlines()
+        if len(raw_lines) < 2 or raw_lines[1].strip():
+            raise ValueError("заголовок пополнения нужно отделить пустой строкой")
+        catalog_entries = [
+            entry for entry in draft.get("dedup_entries", [])
+            if isinstance(entry, dict)
+            and str(entry.get("name", "")).startswith("🆕 ")
+            and not str(entry.get("name", "")).startswith("🆕 завоз ")
+        ]
+        if len(catalog_entries) == 1:
+            product_links = [
+                (href, text) for href, text in parser.anchors
+                if urlparse(href).netloc.casefold() == "steamgate.online"
+                and "/products/" in urlparse(href).path
+                and text.casefold() == "steamgate"
+            ]
+            if len(product_links) != 1:
+                raise ValueError("ссылку на одиночную игру нужно встроить в слово SteamGate во втором абзаце")
+            if any(text.casefold().startswith(("открыть", "смотреть")) for _, text in parser.anchors):
+                raise ValueError("отдельная CTA-ссылка в одиночном пополнении дублирует текст")
+            content_lines = []
+            for line in raw_lines[2:]:
+                stripped = line.strip()
+                if stripped.startswith("<blockquote"):
+                    break
+                if stripped:
+                    content_lines.append(stripped)
+            if len(content_lines) != 2 or any(not EMOJI_RE.match(line) for line in content_lines):
+                raise ValueError("у одиночного пополнения должно быть два абзаца с подходящими эмодзи")
+            if product_links[0][0] not in content_lines[1]:
+                raise ValueError("ссылку на одиночную игру нужно встроить в слово SteamGate во втором абзаце")
     if draft["tier"] in {"freebie", "sale"}:
         if len(parser.blockquotes) != 2:
             raise ValueError("в дайджесте должно быть два blockquote")
@@ -673,7 +719,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v101 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v102 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)

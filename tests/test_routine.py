@@ -149,7 +149,7 @@ class RoutineTests(unittest.TestCase):
             '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
             'Marvel Tōkon и The Jackbox Party Pack 5 уже в каталоге.\n\n'
             '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
-            '<blockquote>🔥 — собираю команду\n💩 — не люблю викторины</blockquote>\n\n'
+            '<blockquote>🔥 — хочу попробовать\n💩 — не люблю викторины</blockquote>\n\n'
             '#SteamGate #новинки #Steam #MarvelTokon #Jackbox'
         ))
         routine.validate_caption(value)
@@ -159,7 +159,7 @@ class RoutineTests(unittest.TestCase):
             '🆕 <b>В SteamGate добавили 3 игры</b>\n\n'
             '<blockquote expandable>OCTOPATH TRAVELER 0\nMorbid Metal\nSephiria</blockquote>\n\n'
             '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
-            '<blockquote>🔥 — начинаю с Octopath\n💩 — не моё</blockquote>\n\n'
+            '<blockquote>🔥 — хочу начать с Octopath\n💩 — не моё</blockquote>\n\n'
             '#SteamGate #новинки #Steam #игры #PCGaming'
         ))
         routine.validate_caption(value)
@@ -169,10 +169,72 @@ class RoutineTests(unittest.TestCase):
             '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
             'OCTOPATH TRAVELER 0 и Sephiria уже в каталоге.\n\n'
             '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
-            '<blockquote>🔥 — начинаю с Octopath\n💩 — ничего не зацепило</blockquote>\n\n'
+            '<blockquote>🔥 — уже играю в Octopath\n💩 — ничего не зацепило</blockquote>\n\n'
             '#SteamGate #новинки #Steam #игры #PCGaming'
         ))
         routine.validate_caption(value)
+
+    def test_accepts_single_catalog_with_embedded_product_link(self):
+        value = catalog_draft(["ReStory: Chill Electronics Repairs"])
+        value["caption_html"] = (
+            '🆕 <b>ReStory: Chill Electronics Repairs теперь в SteamGate</b>\n\n'
+            '🛠 Уютный симулятор мастерской в Токио нулевых.\n\n'
+            '🎮 Игра вышла 6 августа и уже доступна по подписке '
+            '<a href="https://steamgate.online/ru/products/restory-chill-electronics-repairs-2162">SteamGate</a>.\n\n'
+            '<blockquote>🔥 — имба\n💩 — не люблю симуляторы</blockquote>\n\n'
+            '#SteamGate #ReStory #симуляторы #новинки #игры #Steam'
+        )
+        routine.validate_caption(value)
+
+    def test_rejects_single_catalog_with_separate_product_link(self):
+        value = catalog_draft(["ReStory: Chill Electronics Repairs"])
+        value["caption_html"] = (
+            '🆕 <b>ReStory: Chill Electronics Repairs теперь в SteamGate</b>\n\n'
+            '🛠 Уютный симулятор мастерской в Токио нулевых.\n\n'
+            '🎮 Игра вышла 6 августа и уже доступна по подписке SteamGate.\n\n'
+            '<a href="https://steamgate.online/ru/products/restory-chill-electronics-repairs-2162">Открыть игру в SteamGate</a>\n\n'
+            '<blockquote>🔥 — имба\n💩 — не люблю симуляторы</blockquote>\n\n'
+            '#SteamGate #ReStory #симуляторы #новинки #игры #Steam'
+        )
+        with self.assertRaisesRegex(ValueError, "встроить в слово SteamGate"):
+            routine.validate_caption(value)
+
+    def test_rejects_single_catalog_without_emoji_paragraphs(self):
+        value = catalog_draft(["ReStory: Chill Electronics Repairs"])
+        value["caption_html"] = (
+            '🆕 <b>ReStory: Chill Electronics Repairs теперь в SteamGate</b>\n\n'
+            'Уютный симулятор мастерской в Токио нулевых.\n\n'
+            '🎮 Игра доступна по подписке '
+            '<a href="https://steamgate.online/ru/products/restory-chill-electronics-repairs-2162">SteamGate</a>.\n\n'
+            '<blockquote>🔥 — имба\n💩 — не люблю симуляторы</blockquote>\n\n'
+            '#SteamGate #ReStory #симуляторы #новинки #игры #Steam'
+        )
+        with self.assertRaisesRegex(ValueError, "два абзаца с подходящими эмодзи"):
+            routine.validate_caption(value)
+
+    def test_rejects_single_catalog_without_blank_line_after_title(self):
+        value = catalog_draft(["ReStory: Chill Electronics Repairs"])
+        value["caption_html"] = (
+            '🆕 <b>ReStory: Chill Electronics Repairs теперь в SteamGate</b>\n'
+            '🛠 Уютный симулятор мастерской в Токио нулевых.\n\n'
+            '🎮 Игра доступна по подписке '
+            '<a href="https://steamgate.online/ru/products/restory-chill-electronics-repairs-2162">SteamGate</a>.\n\n'
+            '<blockquote>🔥 — имба\n💩 — не люблю симуляторы</blockquote>\n\n'
+            '#SteamGate #ReStory #симуляторы #новинки #игры #Steam'
+        )
+        with self.assertRaisesRegex(ValueError, "отделить пустой строкой"):
+            routine.validate_caption(value)
+
+    def test_rejects_forced_positive_reaction(self):
+        value = draft("catalog", (
+            '🆕 <b>В SteamGate добавили 2 игры</b>\n\n'
+            'Marvel Tōkon и The Jackbox Party Pack 5 уже в каталоге.\n\n'
+            '<a href="https://example.com/catalog">Открыть каталог</a>\n\n'
+            '<blockquote>🔥 — несу приставку на ремонт\n💩 — не люблю симуляторы</blockquote>\n\n'
+            '#SteamGate #новинки #Steam #MarvelTokon #Jackbox'
+        ))
+        with self.assertRaisesRegex(ValueError, "короткой и прямой"):
+            routine.validate_caption(value)
 
     def test_rejects_repeated_catalog_wording(self):
         value = draft("catalog", (
