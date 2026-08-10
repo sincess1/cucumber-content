@@ -1,103 +1,6 @@
 {
   "posted": [
     {
-      "name": "🆕 Echoes of Aincrad",
-      "date": "2026-07-11"
-    },
-    {
-      "name": "🆕 завоз 2026-07-11",
-      "date": "2026-07-11"
-    },
-    {
-      "name": "🔥 скидки 2026-07-11",
-      "date": "2026-07-11"
-    },
-    {
-      "name": "One Piece Odyssey",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Rise of the Tomb Raider",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-16"
-    },
-    {
-      "name": "Tomb Raider GOTY",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-16"
-    },
-    {
-      "name": "SoulCalibur VI",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Elite Dangerous",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-16"
-    },
-    {
-      "name": "Pathfinder: Wrath of the Righteous",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-13"
-    },
-    {
-      "name": "Warhammer 40000: Rogue Trader",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-13"
-    },
-    {
-      "name": "DmC: Devil May Cry",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "One Piece: Pirate Warriors 4",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "JoJo's Bizarre Adventure All-Star Battle R",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Digimon Story Cyber Sleuth",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Digimon Survive",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "God Eater 3",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Onimusha 2",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-23"
-    },
-    {
-      "name": "Shinobi: Art of Vengeance",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-20"
-    },
-    {
-      "name": "Battle Brothers",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-24"
-    },
-    {
-      "name": "Darkwood",
-      "date": "2026-07-11",
-      "sale_until": "2026-07-24"
-    },
-    {
       "name": "KeepUp Survival",
       "date": "2026-07-12",
       "free_until": "2026-07-19"
@@ -1773,6 +1676,50 @@
     {
       "name": "🆕 завоз 2026-08-10",
       "date": "2026-08-10"
+    },
+    {
+      "name": "🔥 скидки 2026-08-11",
+      "date": "2026-08-11"
+    },
+    {
+      "name": "Persona 3 Reload",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-24"
+    },
+    {
+      "name": "Detroit: Become Human",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-17"
+    },
+    {
+      "name": "Metaphor: ReFantazio",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-24"
+    },
+    {
+      "name": "Lords of the Fallen",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-24"
+    },
+    {
+      "name": "Beyond Two Souls",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-17"
+    },
+    {
+      "name": "Heavy Rain",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-17"
+    },
+    {
+      "name": "The Stanley Parable: Ultra Deluxe",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-17"
+    },
+    {
+      "name": "Papers, Please",
+      "date": "2026-08-11",
+      "sale_until": "2026-08-17"
     }
   ]
 }
