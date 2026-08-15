@@ -139,11 +139,23 @@ def fit_cover(im, cw, ch):
         im = im.crop((l, 0, l + nw, im.height))
     return im.resize((cw, ch), Image.LANCZOS)
 
+def load_covers(items):
+    loaded = []
+    for item in items:
+        try:
+            loaded.append((item, load_img(item["img"])))
+        except (OSError, ValueError):
+            continue
+    if not loaded:
+        raise ValueError("не удалось загрузить ни одной обложки")
+    return loaded
+
 def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path, encoding="utf-8"))
     rub = RUBRICS.get(cfg.get("rubric", ""))
     accent = rub["color"] if rub else ACCENTS.get(cfg.get("accent", "blue"), PRIMARY)
-    items = cfg["items"]
+    loaded = load_covers(cfg["items"])
+    items = [item for item, _ in loaded]
     footer = cfg.get("footer", "2000+ игр Steam по подписке")
     pad, gap, row_gap = 40, 24, 22
     n = len(items)
@@ -151,7 +163,7 @@ def main(cfg_path, out_path):
     rows = (n + cols - 1) // cols
     cw = (W - pad*2 - gap*(cols-1)) // cols
     ch = int(cw * 215 / 460)   # единый размер карты (формат steam header)
-    covers = [fit_cover(load_img(it["img"]), cw, ch) for it in items]
+    covers = [fit_cover(image, cw, ch) for _, image in loaded]
 
     # ── вертикаль шапки считаем ЗАРАНЕЕ (по реальным размерам текста),
     # чтобы разделитель НИКОГДА не резал subtitle ──
