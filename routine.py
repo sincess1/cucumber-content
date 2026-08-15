@@ -183,6 +183,10 @@ def fetch_json(url, params=None, timeout=25):
 def collect_runtime(env):
     now = moscow_now()
     key = env.get("ITAD_API_KEY") or os.getenv("ITAD_API_KEY", "")
+    epic = fetch_json(
+        "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions",
+        {"locale": "en-US", "country": "US", "allowCountries": "US"},
+    )
     runtime = {
         "today": now.date().isoformat(),
         "moscow_time": now.strftime("%H:%M"),
@@ -195,6 +199,7 @@ def collect_runtime(env):
             "https://www.gamerpower.com/api/giveaways",
             {"platform": "steam", "type": "game", "sort-by": "value"},
         ),
+        "epic_freebies": normalize_epic_freebies(epic, now),
     }
     if key:
         base = "https://api.isthereanydeal.com/deals/v2"
@@ -226,6 +231,61 @@ def parse_timestamp(value):
         return dt.datetime.fromisoformat(str(value).replace("Z", "+00:00")).astimezone(MOSCOW)
     except Exception:
         return None
+
+
+def normalize_epic_freebies(response, now=None):
+    if not isinstance(response, dict) or not response.get("ok"):
+        return response
+    data = response.get("data")
+    catalog = data.get("data", {}).get("Catalog", {}) if isinstance(data, dict) else {}
+    elements = catalog.get("searchStore", {}).get("elements", [])
+    if not isinstance(elements, list):
+        return {"ok": False, "error": "Epic вернул данные неизвестного формата"}
+    current = now or moscow_now()
+    freebies = []
+    for item in elements:
+        if not isinstance(item, dict):
+            continue
+        total = item.get("price", {}).get("totalPrice", {})
+        if not isinstance(total, dict) or float(total.get("originalPrice") or 0) <= 0:
+            continue
+        active = None
+        promotions = item.get("promotions") if isinstance(item.get("promotions"), dict) else {}
+        for group in promotions.get("promotionalOffers", []) or []:
+            for offer in group.get("promotionalOffers", []) if isinstance(group, dict) else []:
+                start = parse_timestamp(offer.get("startDate"))
+                end = parse_timestamp(offer.get("endDate"))
+                setting = offer.get("discountSetting") if isinstance(offer.get("discountSetting"), dict) else {}
+                if start and end and start <= current <= end and setting.get("discountPercentage") == 0:
+                    active = (start, end)
+                    break
+            if active:
+                break
+        title = str(item.get("title") or "").strip()
+        if not title or not active:
+            continue
+        mappings = item.get("catalogNs", {}).get("mappings", [])
+        if not mappings:
+            mappings = item.get("offerMappings", [])
+        slug = next(
+            (str(mapping.get("pageSlug")) for mapping in mappings if isinstance(mapping, dict) and mapping.get("pageSlug")),
+            "",
+        )
+        images = {
+            str(image.get("type")): str(image.get("url"))
+            for image in item.get("keyImages", [])
+            if isinstance(image, dict) and image.get("type") and image.get("url")
+        }
+        freebies.append({
+            "title": title,
+            "platform": "Epic Games Store",
+            "start_date": active[0].isoformat(),
+            "end_date": active[1].isoformat(),
+            "url": f"https://store.epicgames.com/p/{slug}" if slug else "https://store.epicgames.com/free-games",
+            "image": images.get("OfferImageWide") or images.get("DieselStoreFrontWide") or next(iter(images.values()), None),
+            "original_price": total.get("fmtPrice", {}).get("originalPrice"),
+        })
+    return {"ok": True, "data": freebies}
 
 
 def pending_catalog_titles(runtime, posted):
@@ -313,7 +373,62 @@ def pending_freebies(runtime, posted):
             and not ("requires" in details and ("points" in details or " arp" in details))
         ):
             add(title, str(item.get("end_date", ""))[:10])
+    for item in response_items(runtime.get("epic_freebies")):
+        if isinstance(item, dict):
+            add(item.get("title", ""), str(item.get("end_date", ""))[:10])
     return list(candidates.values())
+
+
+def pending_sale_titles(runtime, posted):
+    today = parse_date(runtime.get("today", ""))
+    if today is None:
+        return []
+    daily_marker = f"🔥 скидки {today.isoformat()}".casefold()
+    posted_names = {
+        old["name"].casefold()
+        for old in posted
+        if isinstance(old, dict) and isinstance(old.get("name"), str)
+    }
+    if daily_marker in posted_names:
+        return []
+    cutoff = today - dt.timedelta(days=30)
+    recent_sales = {
+        old["name"].casefold()
+        for old in posted
+        if isinstance(old, dict)
+        and isinstance(old.get("name"), str)
+        and old.get("sale_until")
+        and (parse_date(old.get("date", "")) or dt.date.min) >= cutoff
+    }
+    titles = []
+    seen = set()
+    for item in response_items(runtime.get("itad_trending")):
+        if not isinstance(item, dict) or str(item.get("type", "")).casefold() != "game":
+            continue
+        deal = item.get("deal") if isinstance(item.get("deal"), dict) else {}
+        shop = deal.get("shop") if isinstance(deal.get("shop"), dict) else {}
+        expiry = parse_timestamp(deal.get("expiry"))
+        title = str(item.get("title") or "").strip()
+        key = title.casefold()
+        try:
+            cut = int(deal.get("cut") or 0)
+        except (TypeError, ValueError):
+            continue
+        qualifies = 85 <= cut <= 95 or str(deal.get("flag") or "").upper() == "N"
+        if (
+            not title
+            or key in seen
+            or key in recent_sales
+            or str(shop.get("name", "")).casefold() != "steam"
+            or cut == 100
+            or not qualifies
+            or expiry is None
+            or expiry.date() < today
+        ):
+            continue
+        seen.add(key)
+        titles.append(title)
+    return titles
 
 
 def codex_command(prompt, schema, output, effort, image=None, search=False):
@@ -534,8 +649,17 @@ def validate_history(draft, posted, caption_lines):
         line.startswith(draft["date"] + " ") or line.startswith(short_date + " ")
         for line in caption_lines
     )
-    if post_count >= 5 and draft["tier"] not in {"freebie", "catalog"}:
-        raise ValueError("достигнут жёсткий лимит пяти постов за московские сутки")
+    if post_count >= 3 and draft["tier"] not in {"freebie", "catalog"}:
+        raise ValueError("достигнут жёсткий лимит трёх постов за московские сутки")
+    if draft["tier"] in {"event", "news"}:
+        ordinary_today = any(
+            (line.startswith(draft["date"] + " ") or line.startswith(short_date + " "))
+            and "дайджест(" not in line
+            and "| завоз |" not in line
+            for line in caption_lines
+        )
+        if ordinary_today:
+            raise ValueError("сегодня уже был одиночный новостной или событийный пост")
     by_name = {}
     for old in posted:
         if isinstance(old, dict) and old.get("name"):
@@ -581,6 +705,17 @@ def validate_priority(draft, runtime, posted):
             raise ValueError("для поста о пополнении нет неопубликованных игр")
         if missing:
             raise ValueError("в посте о пополнении пропущены: " + ", ".join(missing))
+    if tier == "sale":
+        allowed = {title.casefold() for title in pending_sale_titles(runtime, posted)}
+        sale_entries = [
+            entry["name"] for entry in draft["dedup_entries"]
+            if not entry["name"].startswith("🔥 скидки ")
+        ]
+        if len(sale_entries) < 3:
+            raise ValueError("для скидочного поста нужно минимум три рекордные скидки или скидки 85–95%")
+        rejected = [title for title in sale_entries if title.casefold() not in allowed]
+        if rejected:
+            raise ValueError("скидки не прошли жёсткий фильтр: " + ", ".join(rejected))
 
 
 def validate_draft(draft):
@@ -607,6 +742,15 @@ def validate_draft(draft):
     }[draft["tier"]]
     if draft["banner"]["rubric"] != expected_rubric:
         raise ValueError("рубрика баннера не соответствует тиру")
+    if draft["tier"] in {"event", "news"}:
+        if not draft["approval"]["send"] or not draft["approval"]["threads"]:
+            raise ValueError("новость или событие должны быть редкой сливкой, иначе нужен СКИП")
+        domains = {
+            urlparse(source["url"]).netloc.casefold().removeprefix("www.")
+            for source in draft["sources"]
+        }
+        if len(domains) < 2:
+            raise ValueError("для шокирующей новости нужны два независимых источника")
     if draft["tier"] == "freebie":
         if any(not entry["free_until"] for entry in draft["dedup_entries"]):
             raise ValueError("у халявы нет free_until")
@@ -614,6 +758,9 @@ def validate_draft(draft):
                for entry in draft["dedup_entries"]):
             raise ValueError("у халявы неверный free_until")
     if draft["tier"] == "sale":
+        marker = f"🔥 скидки {draft['date']}"
+        if not any(entry["name"] == marker for entry in draft["dedup_entries"]):
+            raise ValueError("у скидочного поста нет дневного замка")
         if any(not entry["sale_until"] for entry in draft["dedup_entries"] if not entry["name"].startswith("🔥 скидки ")):
             raise ValueError("у скидки нет sale_until")
         if any(parse_date(entry["sale_until"]) is None or parse_date(entry["sale_until"]) < dt.date.fromisoformat(draft["date"])
@@ -719,7 +866,7 @@ def persist_and_push(draft):
         entries = [{key: value for key, value in entry.items() if value is not None} for entry in draft["dedup_entries"]]
         posted_doc["posted"] = merge_posted(current, entries, today)
         write_json(ROOT / "posted.json", posted_doc)
-    decision = f"{draft['date']} {draft['moscow_time']} | v102 | {draft['decision_log']}"
+    decision = f"{draft['date']} {draft['moscow_time']} | v103 | {draft['decision_log']}"
     append_trimmed(ROOT / "decisions.log", decision, 40)
     if draft["status"] == "post":
         append_trimmed(ROOT / "captions.log", draft["caption_log"], 15)
@@ -824,9 +971,6 @@ def publish(draft, banner, env):
             markup=approval_markup(draft["approval"]["threads"]),
             photo_id=photo_id,
         )
-        reason = draft["approval"]["reason"].strip()
-        if reason:
-            telegram_call(token, "sendMessage", data={"chat_id": str(owner), "text": f"📋 {reason}"})
     return message_id
 
 

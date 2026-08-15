@@ -36,13 +36,16 @@ def draft(tier="news", caption=None):
         }],
         "decision_log": "тиры 1–5 пусты | взял тир 6",
         "caption_log": f"{today} | А | Проверяемая игровая новость | байт: читаю",
-        "sources": [{"url": "https://example.com/news", "fact": "Подтверждение новости"}],
-        "approval": {"send": True, "reason": "Достойно основного канала", "threads": False},
+        "sources": [
+            {"url": "https://example.com/news", "fact": "Первое подтверждение новости"},
+            {"url": "https://news.example.org/story", "fact": "Независимое подтверждение новости"},
+        ],
+        "approval": {"send": True, "reason": "Достойно основного канала", "threads": True},
         "blog_eligible": False,
     }
 
 
-def runtime(new_games=None, freebies=None):
+def runtime(new_games=None, freebies=None, sales=None):
     today = routine.moscow_now().date()
     games = []
     for title, created in new_games or []:
@@ -60,11 +63,27 @@ def runtime(new_games=None, freebies=None):
                 "expiry": (today + dt.timedelta(days=2)).isoformat() + "T19:00:00+03:00",
             },
         })
+    sale_deals = []
+    for title, cut, flag in sales or []:
+        sale_deals.append({
+            "title": title,
+            "type": "game",
+            "deal": {
+                "shop": {"name": "Steam"},
+                "price": {"amount": 4.99},
+                "regular": {"amount": 19.99},
+                "cut": cut,
+                "flag": flag,
+                "expiry": (today + dt.timedelta(days=2)).isoformat() + "T19:00:00+03:00",
+            },
+        })
     return {
         "today": today.isoformat(),
         "new_games": {"ok": True, "data": games},
         "gamerpower": {"ok": True, "data": []},
+        "epic_freebies": {"ok": True, "data": []},
         "itad_cut": {"ok": True, "data": {"list": deals}},
+        "itad_trending": {"ok": True, "data": {"list": sale_deals}},
     }
 
 
@@ -99,6 +118,18 @@ class RoutineTests(unittest.TestCase):
 
     def test_valid_news(self):
         routine.validate_draft(draft())
+
+    def test_rejects_ordinary_news(self):
+        value = draft()
+        value["approval"]["threads"] = False
+        with self.assertRaisesRegex(ValueError, "редкой сливкой"):
+            routine.validate_draft(value)
+
+    def test_rejects_news_with_one_source_domain(self):
+        value = draft()
+        value["sources"][1]["url"] = "https://example.com/another"
+        with self.assertRaisesRegex(ValueError, "два независимых источника"):
+            routine.validate_draft(value)
 
     def test_rejects_broken_html(self):
         value = draft(caption=(
@@ -270,10 +301,16 @@ class RoutineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "уже была"):
             routine.validate_history(value, history, [])
 
-    def test_rejects_sixth_daily_post(self):
+    def test_rejects_fourth_daily_post(self):
         value = draft()
-        lines = [f"{value['date']} | А | пост {index}" for index in range(5)]
-        with self.assertRaisesRegex(ValueError, "лимит пяти"):
+        lines = [f"{value['date']} | дайджест(скидки) | пост {index}" for index in range(3)]
+        with self.assertRaisesRegex(ValueError, "лимит трёх"):
+            routine.validate_history(value, [], lines)
+
+    def test_rejects_second_news_of_day(self):
+        value = draft()
+        lines = [f"{value['date']} | А | уже была новость"]
+        with self.assertRaisesRegex(ValueError, "уже был одиночный"):
             routine.validate_history(value, [], lines)
 
     def test_catalog_bypasses_daily_post_limit(self):
@@ -329,6 +366,99 @@ class RoutineTests(unittest.TestCase):
             "free_until": (routine.moscow_now().date() + dt.timedelta(days=1)).isoformat(),
         }]
         self.assertEqual(routine.pending_freebies(data, posted), [])
+
+    def test_normalizes_only_active_paid_epic_giveaways(self):
+        now = routine.moscow_now()
+        active = {
+            "title": "Caravan SandWitch",
+            "price": {"totalPrice": {"originalPrice": 2499, "fmtPrice": {"originalPrice": "$24.99"}}},
+            "promotions": {"promotionalOffers": [{"promotionalOffers": [{
+                "startDate": (now - dt.timedelta(days=1)).isoformat(),
+                "endDate": (now + dt.timedelta(days=2)).isoformat(),
+                "discountSetting": {"discountPercentage": 0},
+            }]}]},
+            "catalogNs": {"mappings": [{"pageSlug": "caravan-sandwitch-05ff58"}]},
+            "keyImages": [{"type": "OfferImageWide", "url": "https://example.com/caravan.jpg"}],
+        }
+        future = {
+            **active,
+            "title": "Будущая раздача",
+            "promotions": {"promotionalOffers": [], "upcomingPromotionalOffers": []},
+        }
+        response = {"ok": True, "data": {"data": {"Catalog": {"searchStore": {"elements": [active, future]}}}}}
+        result = routine.normalize_epic_freebies(response, now)
+        self.assertEqual([item["title"] for item in result["data"]], ["Caravan SandWitch"])
+        self.assertEqual(result["data"][0]["url"], "https://store.epicgames.com/p/caravan-sandwitch-05ff58")
+
+    def test_epic_freebie_blocks_lower_tier(self):
+        data = runtime()
+        data["epic_freebies"]["data"] = [{
+            "title": "Caravan SandWitch",
+            "end_date": (routine.moscow_now().date() + dt.timedelta(days=2)).isoformat(),
+        }]
+        with self.assertRaisesRegex(ValueError, "тир 1 обязателен"):
+            routine.validate_priority(draft(), data, [])
+
+    def test_sale_filter_accepts_only_records_or_85_to_95_percent(self):
+        data = runtime(sales=[
+            ("Исторический минимум", 60, "N"),
+            ("Скидка 85", 85, None),
+            ("Скидка 95", 95, None),
+            ("Обычная скидка", 80, None),
+            ("Халява", 100, "N"),
+        ])
+        self.assertEqual(
+            routine.pending_sale_titles(data, []),
+            ["Исторический минимум", "Скидка 85", "Скидка 95"],
+        )
+
+    def test_sale_draft_rejects_game_outside_hard_filter(self):
+        data = runtime(sales=[
+            ("Исторический минимум", 60, "N"),
+            ("Скидка 85", 85, None),
+            ("Обычная скидка", 80, None),
+        ])
+        value = draft("sale")
+        value["dedup_entries"] = [
+            {"name": f"🔥 скидки {value['date']}", "date": value["date"], "free_until": None, "sale_until": None},
+            *[
+                {"name": title, "date": value["date"], "free_until": None, "sale_until": value["date"]}
+                for title in ("Исторический минимум", "Скидка 85", "Обычная скидка")
+            ],
+        ]
+        with self.assertRaisesRegex(ValueError, "не прошли жёсткий фильтр"):
+            routine.validate_priority(value, data, [])
+
+    def test_sale_draft_accepts_three_filtered_games(self):
+        titles = ("Исторический минимум", "Скидка 85", "Скидка 95")
+        data = runtime(sales=[
+            (titles[0], 60, "N"),
+            (titles[1], 85, None),
+            (titles[2], 95, None),
+        ])
+        value = draft("sale")
+        value["dedup_entries"] = [
+            {"name": f"🔥 скидки {value['date']}", "date": value["date"], "free_until": None, "sale_until": None},
+            *[
+                {"name": title, "date": value["date"], "free_until": None, "sale_until": value["date"]}
+                for title in titles
+            ],
+        ]
+        routine.validate_priority(value, data, [])
+
+    def test_publish_does_not_send_explanation_message(self):
+        test_message = {"message_id": 123, "photo": [{"file_id": "photo-id"}]}
+        with (
+            patch.object(routine, "send_photo", side_effect=[test_message, {}]),
+            patch.object(routine, "save_recent"),
+            patch.object(routine, "telegram_call") as telegram,
+        ):
+            routine.publish(
+                draft(),
+                Path("unused.jpg"),
+                {"CUCUMBER_BOT_TOKEN": "token", "CUCUMBER_OWNER_ID": "1"},
+            )
+        self.assertEqual([call.args[1] for call in telegram.call_args_list], ["setMessageReaction"])
 
     def test_model_replaces_stale_draft_atomically(self):
         with tempfile.TemporaryDirectory() as directory:
